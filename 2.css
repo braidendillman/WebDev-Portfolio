@@ -1,11 +1,11 @@
 h1{
-    color: gray;
+    color: lightpink;
 }
 h2{
-    color: gray;
+    color: lightslategray;
 }
 .common-header-style{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Times New Roman', Times, serif
     
 }
 ul#main-nav{
@@ -15,6 +15,7 @@ ul#main-nav{
     overflow: hidden;
     background-color: #333;
     text-align: center
+    
 
 }
 
@@ -28,6 +29,7 @@ ul#main-nav li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    width: 400px;
 }
 ul#main-nav li a:hover {
 background-color: #111;
@@ -40,14 +42,16 @@ section[title]{
     border: 1px solid black;
     margin: 10px 0px;
     padding: 5px;
-    background-color: lightskyblue;
+    background-image: element(newyork.jpg)
+    
 }
 ul#goals-list{
-    font-family: fantasy;
+    font-family: 'Times New Roman', Times, serif
 }
 ul#hob-list{
-    font-family: fantasy;
+    font-family: 'Times New Roman', Times, serif
 }
 ul#work-list{
-    font-family: fantasy;
+    font-family: 'Times New Roman', Times, serif
 }
+
