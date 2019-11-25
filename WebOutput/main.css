@@ -1,0 +1,88 @@
+h1{
+    color: gray;
+}
+h2{
+    color: gray;
+}
+.common-header-style{
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+
+ul#main-nav{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    text-align: center
+
+}
+
+ul#main-nav li {
+    float: left;
+}
+
+ul#main-nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+ul#main-nav li a:hover {
+background-color: #111;
+}
+
+section[basicinfo]{
+    border-style: solid;
+    text-align: left;
+    border-radius: 5px;
+    margin: 50px 10px;
+    background-color: lightgray;
+    height: 500px;
+    width: 55%;
+    padding: 5px;
+}
+section[education]{
+    border-style: solid;
+    text-align: center;
+    border-radius: 5px;
+    margin: 50px 10px;
+    background-color: lightgray;
+    height: 200px;
+    width: 55%;
+
+
+}
+section[skills]{
+    border-style: solid;
+    text-align: center;
+    border-radius: 5px;
+    margin: 50px 10px;
+    background-color: lightgray;
+    height: 200px;
+    width: 55%;
+}
+section[about]{
+    border-style: solid;
+    text-align: center;
+    border-radius: 5px;
+    margin: 50px 10px;
+    background-color: lightgray;
+    height: 200px;
+    width: 55%;
+
+}
+section[ads]{
+    border-style: solid;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    height: 650px;
+    width: 30%;
+    padding: 50px 10px;
+    position: fixed;
+  bottom: 0;
+  right: 0;
+}

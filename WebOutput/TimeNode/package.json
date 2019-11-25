@@ -1,0 +1,14 @@
+{
+  "name": "timenode",
+  "version": "1.0.0",
+  "description": "Web120 Assignment TimeNode Part 1 moment.js practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Braiden Dillman",
+  "license": "MIT",
+  "dependencies": {
+    "moment": "^2.24.0"
+  }
+}

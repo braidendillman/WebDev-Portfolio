@@ -1,0 +1,85 @@
+#day0{
+    border-style: solid;
+    border-color: lightblue;
+    height: 110px;
+    width: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+    bottom: -55px;
+    left: 250px;
+   
+
+}
+
+#day1{
+    border-style: solid;
+    border-color: lightblue;
+    height: 110px;
+    width: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+    bottom: 75px;
+    left: 500px;
+    
+}
+
+#day2{
+    border-style: solid;
+    border-color: lightblue;
+    height: 110px;
+    width: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+    bottom: 220px;
+    left: 750px;
+}
+
+#day3{
+    border-style: solid;
+    border-color: lightblue;
+    height: 110px;
+    width: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+    bottom: 360px;
+    left: 1000px;
+}
+
+#day4{
+    border-style: solid;
+    border-color: lightblue;
+    height: 110px;
+    width: 10%;
+    text-align: center;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    position: relative;
+    bottom: 500px;
+    left: 1250px;
+}
+
+#day, #currentTemp, #conditions, #conditionsDesc {
+    display: none;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+body{
+    background-image: url(weather.jpg);
+}

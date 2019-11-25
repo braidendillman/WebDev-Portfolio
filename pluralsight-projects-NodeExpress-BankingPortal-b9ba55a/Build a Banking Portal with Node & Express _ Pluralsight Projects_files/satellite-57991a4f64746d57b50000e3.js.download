@@ -1,0 +1,15 @@
+(function () {
+  setTimeout(function () {    
+    var hg = document.createElement('script');
+    hg.type = 'text/javascript';
+    hg.async = true;
+    hg.src = '//s2.pluralsight.com/knowledge-owl/kowidget.v1.4.0.js';
+    document.head.appendChild(hg);
+    
+    setTimeout(function() {
+      if (window.KnowledgeOwl) {
+        window.KnowledgeOwl.init();
+      }
+    }, 1000);
+  }, 250);
+})();

@@ -1,0 +1,16 @@
+{
+    firstName: "Braiden",
+    lastName: "Dillman",
+    hairColor: "Blonde",
+    eyeColor: "Blue",
+    constructSkills: {
+        remodel: [
+            "tile",
+            "framing",
+            "concrete",
+            "landscape"
+        ],
+        finish: "carpentry"
+    }
+    
+}

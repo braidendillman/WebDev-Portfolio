@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/creating-a-data-access-library -->
+<html lang="en"><head class="at-element-marker"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/ps-design-system-normalize">
+    <link rel="stylesheet" href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/fonts.css">
+    <link rel="stylesheet" href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/css">
+    <link rel="stylesheet" href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/prism-bootstrap-17.x.css">
+    <title>Build a Banking Portal with Node &amp; Express | Pluralsight Projects</title>
+
+
+      <script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/wootric-sdk.js.download"></script><script type="text/javascript" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/appcues.main.ac63c826476002d8c5fe809d0e36a7b353b7224b.js.download" async=""></script><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/fs.js.download" crossorigin="anonymous"></script><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/30489.js.download"></script><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/amplitude-5.2.2-min.gz.js.download"></script><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/webengage-min-v-6.0.js.download"></script><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/analytics.min.js.download"></script><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/satelliteLib-3f2001f88315610d295e482607f7d003c8627d08.js.download"></script><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/mbox-contents-960477878e7f88665f7209d1be8777f29226dba6.js.download"></script><script>
+window.analyticsHelpers=function(e){function r(n){if(t[n])return t[n].exports;var u=t[n]={exports:{},id:n,loaded:!1};return e[n].call(u.exports,u,u.exports,r),u.loaded=!0,u.exports}var t={};return r.m=e,r.c=t,r.p="",r(0)}([function(e,r,t){e.exports=t(1)},function(e,r,t){"use strict";function n(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(r,"__esModule",{value:!0}),r.stringifyUserSubscriptions=r.pickUserSubscriptionProperty=r.normalizeSlug=void 0;var u=t(2),i=n(u),o=t(3),s=n(o),c=t(4),l=n(c);r.normalizeSlug=i["default"],r.pickUserSubscriptionProperty=s["default"],r.stringifyUserSubscriptions=l["default"]},function(e,r){"use strict";function t(e){return e.split("-").map(function(e){return n.includes(e.toUpperCase())?e.toUpperCase():e.replace(/\b[a-z]/g,function(e){return e.charAt(0).toUpperCase()})}).join(" ")}Object.defineProperty(r,"__esModule",{value:!0}),r["default"]=t;var n=["AWS","CC","CCNA","CCNP","CSS","IINS","HTML","JS","SQL"]},function(e,r){"use strict";function t(e,r){var t=e&&e.user&&e.user.userSubscriptions||[],n=t.map(function(e){return null!==e[r]&&void 0!==e[r]?e[r]:"null"});return n.join(",")}Object.defineProperty(r,"__esModule",{value:!0}),r["default"]=t},function(e,r){"use strict";function t(e,r){var t=e&&e.user&&e.user.userSubscriptions||[];return t.map(function(e){return n(e.offerCode)+","+n(e.sku)}).join("|")}function n(e){return null!==e&&void 0!==e?e:"null"}Object.defineProperty(r,"__esModule",{value:!0}),r["default"]=t}]);
+</script>
+
+      <script type="text/javascript">
+        !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="4.0.0";
+        analytics.load("n2LLbFI1MDxFKBLzI0es2Z7PrDhu6jEA");
+        }}();
+      </script>
+  <link rel="shortcut icon" href="https://s2.pluralsight.com/projects/ui/0.65.42/production/favicon.ico"><link href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/1.d1ba2409a38202ebd35b.css" rel="stylesheet"><link href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/2.7909bf83c291306323fd.css" rel="stylesheet"><link href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/main.8d57ab0fbdc5f2c76296.css" rel="stylesheet"><style type="text/css">._3NtlO4Fh {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  z-index: 20;
+
+  z-index: var(--zIndexActionOverlay);
+
+  pointer-events: none;
+}
+
+._24c65EOA {
+  height: 100px;
+  width: 100px;
+}
+
+._37bs62Vh {
+  display: none;
+}
+
+.UoTlv_g1 {
+  opacity: 0;
+  -webkit-animation: _3rWGPx_J 800ms ease-in-out;
+          animation: _3rWGPx_J 800ms ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes _3rWGPx_J {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes _3rWGPx_J {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+</style><style type="text/css">:root {
+  --player-tooltip-border-radius: 10%;
+  --player-tooltip-border-radius-wide: 4%/12%;
+}
+
+._2p4Rq5Va {
+  display: block;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
+._2p4Rq5Va svg {
+  position: relative;
+  top: 2px;
+}
+
+._3u1sBxFq {
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+
+._3f_7-Z2H ._3u1sBxFq {
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+
+._94r6tttA {
+  background: #555555;
+  background: var(--psColorsGray03);
+  border-radius: 10%;
+  border-radius: var(--player-tooltip-border-radius);
+  position: relative;
+}
+
+._94r6tttA:before {
+  content: '';
+  display: block;
+  border-radius: 10%;
+  border-radius: var(--player-tooltip-border-radius);
+
+  position: absolute;
+  top: 10%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: #363636;
+
+  background: var(--psColorsGray04);
+}
+
+._94r6tttA svg {
+  position: relative;
+}
+
+._94r6tttA ._3u1sBxFq {
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+
+._1magdLWZ._94r6tttA {
+  border-radius: 4%/12%;
+  border-radius: var(--player-tooltip-border-radius-wide);
+}
+
+._1magdLWZ._94r6tttA:before {
+  border-radius: 4%/12%;
+  border-radius: var(--player-tooltip-border-radius-wide);
+}
+
+._1c0t5E4U {
+  border-radius: 50%;
+  background: #363636;
+  background: var(--psColorsGray04);
+  line-height: 0;
+}
+
+._1c0t5E4U ._3u1sBxFq {
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+</style><style type="text/css" data-glamor=""></style><style type="text/css">._3jEiYFs8 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(22, 22, 22, 0.5);
+
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  z-index: 32;
+
+  z-index: var(--zIndexControls);
+
+  pointer-events: none;
+}
+</style><style type="text/css">._1wHAIr0I {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+
+  background: #181818;
+
+  background: var(--psColorsGray06);
+
+  min-height: 211px;
+  min-width: 375px;
+
+  -webkit-user-select: none;
+
+     -moz-user-select: none;
+
+      -ms-user-select: none;
+
+          user-select: none;
+}
+
+._1wHAIr0I[interaction-mode='KEYBOARD'] [tabindex]:focus {
+  outline: 3px solid #137bc2;
+  outline: 3px solid var(--psColorsBlue);
+}
+
+._1wHAIr0I[interaction-mode='MOUSE'] [tabindex]:focus {
+  outline: none;
+}
+
+._1wHAIr0I[interaction-mode='TOUCH'] [tabindex]:focus {
+  outline: none;
+}
+
+._2-FNy9gS {
+  position: relative;
+  overflow: hidden;
+
+  background: #222222;
+
+  background: var(--psColorsGray05);
+}
+
+._2AfmT99K {
+  background: -webkit-gradient(linear, left top, right top, from(#f05a28), to(#e80a89));
+  background: linear-gradient(to right, #f05a28, #e80a89);
+  background: var(--psColorsGradientHorz);
+}
+</style><style type="text/css">._3FO_Qstj {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 11;
+  z-index: var(--zIndexCommandLayer);
+}
+</style><style type="text/css">._1VRUksnA {
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  width: 100%;
+  z-index: 32;
+  z-index: var(--zIndexControls);
+  -webkit-transition: width 200ms ease-out;
+  transition: width 200ms ease-out
+}
+
+._1VRUksnA button {
+    padding: 0;
+  }
+
+/* hack to make hit state of progress bar bigger than it actually is */
+
+._1VRUksnA:before {
+  content: '';
+  display: block;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.2)), color-stop(rgba(0, 0, 0, 0.55)), to(rgba(0, 0, 0, 0.85)));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.85));
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 49px;
+  opacity: 1;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  -webkit-transition: opacity var(--bar-speed) ease-out;
+  transition: opacity var(--bar-speed) ease-out;
+  z-index: 32;
+  z-index: var(--zIndexControls);
+
+  pointer-events: none;
+}
+
+._1VRUksnA._2p49zukN:before {
+  opacity: 0;
+}
+
+[layout='720p']:before {
+  height: 100px;
+}
+
+[layout='480p']:before {
+  height: 80px;
+}
+
+[layout='360p']:before {
+  height: 60px;
+}
+
+[layout='240p']:before {
+  height: 60px;
+}
+
+._1VRUksnA.g2fcwSmp[layout='240p'] {
+  width: calc(100% + 50px);
+}
+
+._2JCOcB-3 {
+  position: relative;
+  z-index: 32;
+  z-index: var(--zIndexControls);
+  max-height: 50px;
+  -webkit-transition: max-height 200ms ease-out;
+  transition: max-height 200ms ease-out;
+  -webkit-transition: max-height var(--bar-speed) ease-out;
+  transition: max-height var(--bar-speed) ease-out;
+  padding: 0 15px;
+}
+
+._2p49zukN ._2JCOcB-3 {
+  max-height: 0;
+  top: -5000px;
+}
+
+._2juYQGst {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+._430snIRK,
+._2LWpY0ql,
+._16mQ2YP-,
+._1kS0wclN {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+._3_fQ8gjA {
+  position: relative;
+  top: -1px;
+  font-size: 12px;
+  font-size: var(--psTypeFontSizeXSmall);
+  text-align: center;
+  width: 100px;
+  cursor: default !important;
+}
+</style><style type="text/css">._1jJ_A16T {
+  position: relative;
+  width: 42px;
+  padding: 3px 0;
+}
+
+._1jJ_A16T ._1Xy5XpDj {
+  cursor: pointer;
+
+  height: 33px;
+  width: 41px;
+
+  padding: 1px 7px 0;
+
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+._1Xy5XpDj[active] path {
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+
+._1Xy5XpDj[active] {
+  border-color: #ffffff;
+  border-color: var(--psColorsWhite);
+  color: #ffffff;
+  color: var(--psColorsWhite);
+}
+</style><style type="text/css">.UzjDVtUD {
+  position: relative;
+  z-index: 37;
+  z-index: var(--zIndexTooltips);
+  height: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.UzjDVtUD:after {
+  content: attr(data-text);
+  display: inline-block;
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  background-color: rgba(54, 54, 54, 0.9);
+  background-color: var(--colorsMenu);
+  border-radius: 3px;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  padding: 5px 8px;
+  white-space: nowrap;
+  font-size: 12px;
+  font-size: var(--psTypeFontSizeXSmall);
+  visibility: hidden;
+}
+
+.UzjDVtUD.vUEEpBwI:after {
+  left: 0;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.UzjDVtUD._3jCZH0TA:after {
+  left: auto;
+  left: initial;
+  right: 0;
+  -webkit-transform: none;
+          transform: none;
+}
+
+.UzjDVtUD:not(._2IzJXGbL):hover:after {
+  visibility: visible;
+}
+</style><style type="text/css">._1SGhOqD8 {
+  height: inherit;
+  width: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+:root ._1SGhOqD8 button {
+  border: 2px solid #ffffff;
+  border: 2px solid var(--psColorsWhite);
+  padding: 0;
+  width: 35px;
+  height: 21px;
+  font-size: 11px;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  position: relative;
+  margin: 0 7px;
+  background-color: inherit;
+  border-radius: 2px;
+  line-height: normal
+}
+
+:root ._1SGhOqD8 button._3Xctanra {
+    border-color: #ffffff;
+    border-color: var(--psColorsWhite);
+    color: #ffffff;
+    color: var(--psColorsWhite);
+  }
+
+._2lvjfoHB {
+  text-align: center;
+}
+</style><script type="text/javascript" charset="utf8" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/kowidget.v1.2.2.js.download"></script><style type="text/css">.wX347wCE {
+  -webkit-transition: height 200ms ease-in-out;
+  transition: height 200ms ease-in-out;
+  width: 100%;
+  background: rgba(54, 54, 54, 0.9);
+  background: var(--colorsMenu);
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
+  font-size: 12px;
+  border-radius: 2px;
+}
+
+.wX347wCE._1LRmxXdL {
+  visibility: hidden !important;
+}
+
+._1vTk_09m,
+._2Foka524 {
+  width: 100%;
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  position: absolute;
+  bottom: 0;
+  padding: 5px 0;
+}
+
+._1vTk_09m {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+._5xy21AG- {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+._2Foka524 {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  visibility: hidden;
+}
+
+._1rNT9xSL {
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
+  visibility: visible;
+}
+
+._38F3dYX5 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  width: 100%;
+  background: transparent;
+  padding: 0 7px 0 14px !important;
+  height: 32px;
+  border: none;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  outline: none;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center
+}
+
+._38F3dYX5:focus {
+    outline: none;
+  }
+
+._1vTk_09m._2Pcm42nl ._38F3dYX5:focus {
+  outline: 3px solid #137bc2;
+  outline: 3px solid var(--psColorsBlue);
+  max-width: calc(100% - 6px);
+  margin-left: 3px;
+  padding-left: 11px !important;
+  padding-right: 4px !important;
+}
+
+._38F3dYX5:hover {
+  background-color: rgba(238, 238, 238, 0.25);
+  background-color: var(--colorsMenuHover);
+}
+
+._3GHbhBcw {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+._3qOHF72y {
+  min-width: 0;
+  margin-left: 3px;
+}
+
+._24rEuawr {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+._3eijXM8d {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+</style><style type="text/css">._2jl-AmT7 {
+  overflow-y: auto;
+}
+
+._2jl-AmT7::-webkit-scrollbar-thumb {
+  background: rgba(238, 238, 238, 0.25);
+  background: var(--colorsMenuHover);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+._2jl-AmT7::-webkit-scrollbar {
+  background: transparent;
+}
+
+._1hZaNPU- {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #181818;
+  background: var(--psColorsGray06);
+  border-radius: 2px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 5px;
+  font-size: 12px;
+  margin: 7px
+}
+
+._1hZaNPU-[focus-within] {
+    -webkit-box-shadow: 0 0 0 3px #137bc2;
+            box-shadow: 0 0 0 3px #137bc2;
+    -webkit-box-shadow: 0 0 0 3px var(--psColorsBlue);
+            box-shadow: 0 0 0 3px var(--psColorsBlue);
+    border-radius: 4px;
+  }
+
+._1hZaNPU-:focus-within {
+    -webkit-box-shadow: 0 0 0 3px #137bc2;
+            box-shadow: 0 0 0 3px #137bc2;
+    -webkit-box-shadow: 0 0 0 3px var(--psColorsBlue);
+            box-shadow: 0 0 0 3px var(--psColorsBlue);
+    border-radius: 4px;
+  }
+
+._1hZaNPU-[focus-within] input {
+    outline: none;
+  }
+
+._1hZaNPU-:focus-within input {
+    outline: none;
+  }
+
+._1hZaNPU- * {
+  font-size: 12px !important;
+}
+
+._3jCE1FPw {
+  background: transparent;
+  width: 100%;
+  font-size: 14px;
+  font-size: var(--psTypeFontSizeSmall);
+  line-height: 24px;
+  line-height: var(--psTypeLineHeightStandard);
+  font-weight: 400;
+  color: #cccccc;
+  color: var(--psColorsGray01);
+  padding: 4px 6px;
+  border: none;
+  margin: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+._l3p52UT {
+  width: 197px;
+  position: absolute;
+  bottom: 50px;
+  bottom: var(--spacingMenuBottom);
+  right: 11px;
+  right: var(--spacingMenuRight);
+}
+</style><style type="text/css">._2vHrrZKv {
+  position: absolute;
+  bottom: 50px;
+  bottom: var(--spacingMenuBottom);
+  right: 11px;
+  right: var(--spacingMenuRight);
+
+  background: rgba(54, 54, 54, 0.9);
+
+  background: var(--colorsMenu);
+  width: 204px;
+  border-radius: 2px;
+  padding: 7px 10px 10px;
+
+  opacity: 1;
+  -webkit-transition: opacity 150ms ease-out;
+  transition: opacity 150ms ease-out;
+  -webkit-transition: opacity var(--menu-speed) ease-out;
+  transition: opacity var(--menu-speed) ease-out;
+}
+
+._2yaCKn27 {
+  font-size: 12px;
+  font-size: var(--psTypeFontSizeXSmall);
+  margin: 0;
+  cursor: default;
+  margin-bottom: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-height: 20px;
+}
+
+._1ivaQGjb {
+  text-align: left;
+  display: block
+
+  /* placeholder for widest text so it doesn't 
+  jump around as you change the speed */
+}
+
+._1ivaQGjb:after {
+    content: attr(data-widest);
+    visibility: hidden;
+    display: block;
+  }
+
+.-fkXXDuI {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.-fkXXDuI li {
+  cursor: pointer;
+  width: 15px;
+  line-height: 1;
+}
+
+.-fkXXDuI li ._30oxI8Ih {
+  cursor: pointer;
+
+  font-size: 0;
+  border: none;
+  width: 2px;
+  height: 16px;
+  padding: 0 !important;
+  position: relative;
+  left: 4px;
+  margin: 0 1px
+}
+
+.-fkXXDuI li ._30oxI8Ih:focus {
+    outline: none;
+  }
+
+.ANv6ZLbf ._30oxI8Ih {
+  background: #f96816;
+  background: var(--psColorsOrange);
+}
+
+._2V4utJaA ._30oxI8Ih {
+  background: #ffffff;
+  background: var(--psColorsWhite);
+  position: relative;
+  width: 4px !important;
+  margin: 0;
+}
+
+.PYYO7nCo ._30oxI8Ih {
+  background: #555555;
+  background: var(--psColorsGray03);
+}
+
+._2a3wZyUh {
+  display: none;
+}
+</style><style type="text/css">._3UBdpTcc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+._1g_VShOO {
+  position: relative;
+  top: -1px;
+  z-index: 40;
+  z-index: var(--zIndexTimelineHandle);
+  width: 0;
+  -webkit-transition: width 150ms ease-out, margin-left 150ms ease-out;
+  transition: width 150ms ease-out, margin-left 150ms ease-out;
+  -webkit-transition: width var(--menu-speed) ease-out, margin-left var(--menu-speed) ease-out;
+  transition: width var(--menu-speed) ease-out, margin-left var(--menu-speed) ease-out;
+  margin-right: -2px
+}
+
+._1g_VShOO.dQ6_DjhT {
+    width: 66px;
+    width: var(--volumeSliderContainerWidth);
+    margin-left: -7px;
+  }
+
+.KxhAATIb {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+
+  height: 38px;
+
+  overflow: hidden;
+  max-width: 0;
+  -webkit-transition: max-width 150ms ease-out;
+  transition: max-width 150ms ease-out;
+  -webkit-transition: max-width var(--menu-speed) ease-out;
+  transition: max-width var(--menu-speed) ease-out
+}
+
+.KxhAATIb.dQ6_DjhT {
+    width: calc(50px + 16px);
+    width: calc(var(--volumeSliderWidth) + 16px);
+    max-width: calc(50px + 16px);
+    max-width: calc(var(--volumeSliderWidth) + 16px);
+  }
+
+._2NMfIjoD {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+
+  width: calc(50px + 16px);
+
+  width: calc(var(--volumeSliderWidth) + 16px)
+}
+
+._2NMfIjoD ._1Fhhz_KL {
+    width: 50px;
+    width: var(--volumeSliderWidth);
+  }
+
+:root ._3SaTngG2 {
+  border-radius: 2px;
+}
+
+[is-ie='true'] ._1zjXzLQO {
+  margin-top: -1px;
+}
+
+:root ._1WBp1HBT {
+  background-color: #ffffff;
+  background-color: var(--psColorsWhite);
+}
+
+/* IE10+ specific styles */
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  ._1g_VShOO {
+    -webkit-transition: width 150ms ease-out, margin-right 150ms ease-out;
+    transition: width 150ms ease-out, margin-right 150ms ease-out;
+  }
+
+  .KxhAATIb {
+    left: 32px;
+    -webkit-transition: max-width 150ms ease-out;
+    transition: max-width 150ms ease-out
+  }
+
+    .KxhAATIb.dQ6_DjhT {
+      width: 66px;
+      max-width: 66px;
+    }
+
+  ._2NMfIjoD {
+    width: 66px
+  }
+
+    ._2NMfIjoD ._1Fhhz_KL {
+      width: 50px;
+    }
+}
+</style><style type="text/css">._1rS7Svnb {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: relative;
+  width: 100%;
+  height: 20px;
+  cursor: pointer
+}
+
+._1rS7Svnb._1CohwwgG {
+    margin: 0 8px;
+  }
+
+._1rS7Svnb:before {
+    /* hack to increase hit area of progress bar */
+    content: '';
+    display: block;
+    background: transparent;
+    height: 16px;
+    width: 100%;
+    position: absolute;
+    bottom: -3px;
+    z-index: 33;
+    z-index: var(--zIndexSliderBar);
+  }
+
+._3HbuXxZQ {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+}
+
+._266wLaOC {
+  background-color: #f96816;
+  background-color: var(--psColorsOrange);
+}
+
+._2Wkig01V {
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 33;
+  z-index: var(--zIndexSliderBar);
+  height: 3px;
+  height: var(--progress-bar-height);
+  -webkit-transition: height 50ms ease-out, width 50ms ease-out, margin-left 50ms ease-out, top 50ms ease-out;
+  transition: height 50ms ease-out, width 50ms ease-out, margin-left 50ms ease-out, top 50ms ease-out
+}
+
+._2Wkig01V._3YKExJMJ {
+    height: 5px;
+    height: var(--progress-bar-hover-height);
+  }
+
+._29j_nsrf {
+  position: absolute;
+  left: 0;
+  background-color: #ffffff;
+  background-color: var(--psColorsWhite);
+  z-index: 40;
+  z-index: var(--zIndexTimelineHandle);
+  border-radius: 50%;
+  display: inline-block;
+  -webkit-transition: height 50ms ease-out, width 50ms ease-out, margin-left 50ms ease-out, top 50ms ease-out;
+  transition: height 50ms ease-out, width 50ms ease-out, margin-left 50ms ease-out, top 50ms ease-out;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 0;
+  width: 0;
+  margin-left: 0
+}
+
+._29j_nsrf._3YKExJMJ {
+    height: 16px;
+    width: 16px;
+    margin-left: -8px;
+  }
+
+._23tVdtYT {
+  position: absolute;
+  width: 2px;
+  background: black;
+  display: inline-block;
+  height: 3px;
+  height: var(--progress-bar-height);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: height 50ms ease-out;
+  transition: height 50ms ease-out;
+  z-index: 35;
+  z-index: var(--zIndexMarkerTick)
+}
+
+._23tVdtYT._3YKExJMJ {
+    height: 5px;
+    height: var(--progress-bar-hover-height);
+  }
+</style><style type="text/css">._1wdpXa-c {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 60;
+  z-index: var(--zIndexErrorModal);
+  background-color: black;
+
+  display: -webkit-box;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+
+  text-align: center;
+}
+
+._210LH2-O {
+  margin: 20px 10px;
+}
+
+._1n-ceWQp {
+  color: #ffffff !important; /* override design system :( */
+}
+</style><style type="text/css">._3D3zOM3n {
+  padding: 15px;
+  position: relative;
+  z-index: 32;
+  z-index: var(--zIndexControls);
+  pointer-events: none;
+}
+
+@media screen and (min-width: 1400px) {
+  ._3D3zOM3n {
+    padding: 1.5%;
+  }
+}
+
+._3D3zOM3n:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0%;
+  left: 0;
+
+  opacity: 1;
+  -webkit-transition: opacity 200ms ease-out;
+  transition: opacity 200ms ease-out;
+  -webkit-transition: opacity var(--bar-speed) ease-out;
+  transition: opacity var(--bar-speed) ease-out;
+
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), color-stop(rgba(0, 0, 0, 0.4)), to(transparent));
+
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4), transparent);
+  z-index: -1;
+  z-index: var(--zIndexBack);
+}
+
+._1umWCyjA._3D3zOM3n:before {
+  opacity: 0;
+}
+
+._3ZBRDGK0 {
+  position: relative;
+  top: 0;
+  -webkit-transition: top 200ms ease-out;
+  transition: top 200ms ease-out;
+  -webkit-transition: top var(--bar-speed) ease-out;
+  transition: top var(--bar-speed) ease-out;
+}
+
+._1umWCyjA ._3ZBRDGK0 {
+  top: -125px;
+}
+
+._9hzKtRkZ,
+.OvnmADh9 {
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  margin: 0;
+  line-height: 24px;
+  line-height: var(--psTypeLineHeightStandard);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+._9hzKtRkZ {
+  font-size: 18px;
+  font-size: var(--psTypeFontSizeMedium);
+  margin-bottom: 5px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+.OvnmADh9 {
+  font-size: 12px;
+  font-size: var(--psTypeFontSizeXSmall);
+  font-weight: 400;
+  font-weight: var(--psTypeFontWeightBook);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+}
+
+@media screen and (min-width: 1400px) {
+  ._9hzKtRkZ {
+    font-size: 24px;
+    font-size: var(--psTypeFontSizeLarge);
+    margin-bottom: 10px;
+  }
+  .OvnmADh9 {
+    font-size: 14px;
+    font-size: var(--psTypeFontSizeSmall);
+  }
+}</style><style type="text/css">._3K1CjCtj {
+  position: absolute;
+  bottom: 1px;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  z-index: var(--zIndexVideo);
+  background-color: black;
+}
+</style><style type="text/css">._3DTJT5We {
+  position: relative;
+
+  /* touch-action: none; */
+
+  width: 100%;
+  height: 100%;
+}
+
+._3DTJT5We:focus {
+  outline: none;
+}
+
+._27ZC7mVV {
+  cursor: none;
+}
+</style><style type="text/css">._2idtml83 {
+  position: relative;
+  width: calc(100% - 1.6rem);
+  margin: 0 0.8rem;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  -webkit-transition: all var(--bar-speed) ease-out;
+  transition: all var(--bar-speed) ease-out;
+}
+
+[is-ie='true'] ._2idtml83 {
+  -webkit-transition: unset;
+  transition: unset;
+}
+
+:root ._3WF-r_Vr {
+  -webkit-transition: height 200ms ease-out;
+  transition: height 200ms ease-out;
+  -webkit-transition: height var(--bar-speed) ease-out;
+  transition: height var(--bar-speed) ease-out;
+}
+
+:root ._3gikQi0S {
+  height: 3px;
+  height: var(--progress-bar-height);
+}
+
+.bMu0Tgzi {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.Fz4-1-L- {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+:root ._7rWdP78G {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+._2ijiHqS6 {
+  position: absolute;
+  top: -20px;
+  font-size: 12px;
+  background-color: rgba(54, 54, 54, 0.9);
+  background-color: var(--colorsMenu);
+  border-radius: 3px;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  padding: 3px 8px 2px;
+  opacity: 0;
+  margin-left: -20px;
+  pointer-events: none;
+  z-index: 35;
+  z-index: var(--zIndexProgressBarTimestamp);
+}
+
+._1FKvovYK {
+  opacity: 1;
+  -webkit-transition: opacity 150ms ease-out;
+  transition: opacity 150ms ease-out;
+}
+</style><style type="text/css">._3yQp9ytg {
+  position: absolute;
+  z-index: 32;
+  z-index: var(--zIndexTimelineMarker);
+  background: none;
+  border: none;
+  padding: 0;
+  position: absolute;
+  bottom: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  opacity: 0.75;
+  cursor: pointer;
+
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px)
+}
+
+._3yQp9ytg._2pXw9FMs {
+    -webkit-animation: 10ms ease-out 50ms :local(fade-from-visually-hidden);
+            animation: 10ms ease-out 50ms :local(fade-from-visually-hidden);
+    height: auto;
+    height: initial;
+    width: auto;
+    width: initial;
+    overflow: visible;
+    overflow: initial;
+    clip: auto;
+    clip: initial;
+    opacity: 0.75;
+  }
+
+._3yQp9ytg._2pXw9FMs:hover {
+    opacity: 1;
+  }
+
+._3yQp9ytg:not(.xEQa3zu6) {
+    outline: none;
+  }
+
+._2SnraXrc {
+  width: 16px;
+  height: 16px;
+  fill: #ffffff;
+  fill: var(--psColorsWhite);
+}
+
+._3hFlyxA8 {
+  margin-left: 2px;
+  font-size: 12px;
+  font-family: GothamSSm A, Gotham SSm B, sans-serif;
+  line-height: 1;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  text-shadow: 0 0 2px black;
+}
+
+@-webkit-keyframes _2GimNE8n {
+  0% {
+    height: auto;
+    height: initial;
+    width: auto;
+    width: initial;
+    overflow: visible;
+    overflow: initial;
+    clip: auto;
+    clip: initial;
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+
+@keyframes _2GimNE8n {
+  0% {
+    height: auto;
+    height: initial;
+    width: auto;
+    width: initial;
+    overflow: visible;
+    overflow: initial;
+    clip: auto;
+    clip: initial;
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+</style><style type="text/css">._28Iy7omf {
+  position: absolute;
+  bottom: 50px;
+  -webkit-transition: bottom 150ms ease-out;
+  transition: bottom 150ms ease-out;
+  -webkit-transition: bottom var(--menu-speed) ease-out;
+  transition: bottom var(--menu-speed) ease-out;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
+  pointer-events: none;
+  z-index: 12;
+  z-index: var(--zIndexCaptions);
+}
+
+._3Gm6hOAy {
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  font-size: var(--psTypeFontSizeSmall);
+  padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+  border-radius: 3px;
+  text-align: center;
+  margin: 1px;
+  color: #ffffff;
+  color: var(--psColorsWhite);
+  font-size: 24px;
+  font-size: var(--psTypeFontSizeLarge);
+}
+
+.KrFRHvsa ._3Gm6hOAy,
+._2kmY2yM- ._3Gm6hOAy {
+  font-size: 14px;
+  font-size: var(--psTypeFontSizeSmall);
+}
+
+._3hknL4V6 ._3Gm6hOAy {
+  font-size: 18px;
+  font-size: var(--psTypeFontSizeMedium);
+}
+
+._4607XSV5 ._3Gm6hOAy {
+  font-size: 24px;
+  font-size: var(--psTypeFontSizeLarge);
+}
+
+._2Y6cZrGg {
+  bottom: 0;
+  -webkit-transition: bottom 150ms ease-out;
+  transition: bottom 150ms ease-out;
+  -webkit-transition: bottom var(--menu-speed) ease-out;
+  transition: bottom var(--menu-speed) ease-out;
+}
+
+/* IE10+ specific styles */
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+  ._28Iy7omf {
+    -webkit-transition: bottom 150ms ease-out;
+    transition: bottom 150ms ease-out;
+  }
+
+  ._2Y6cZrGg {
+    -webkit-transition: bottom 150ms ease-out;
+    transition: bottom 150ms ease-out;
+  }
+}
+</style><style type="text/css">.duKRI0aO {
+  z-index: 50;
+  z-index: var(--zIndexKeyboardShortcuts);
+  position: relative;
+}
+
+.uBFI28F0 {
+  margin-bottom: var(--psLayoutSpacingLarge);
+}
+
+._19NWear4 {
+  margin: var(--psLayoutSpacingMedium);
+}
+</style><style type="text/css">:root {
+  /* ui colors */
+  --psColorsWhite: #ffffff;
+  --psColorsBone: #f2f2f2;
+  --psColorsGray01: #cccccc;
+  --psColorsGray02: #aaaaaa;
+  --psColorsGray03: #555555;
+  --psColorsGray04: #363636;
+  --psColorsGray05: #222222;
+  --psColorsGray06: #181818;
+  --psColorsBlack: #000000;
+
+  --psColorsPink: #e80a89;
+  --psColorsRed: #de3636;
+  --psColorsOrange: #f96816;
+  --psColorsOrangeLight: #ff7b39;
+  --psColorsYellow: #ffc200;
+  --psColorsGreenLight: #86ce21;
+  --psColorsGreen: #23aa5a;
+  --psColorsBlue: #137bc2;
+
+  /* gradients */
+  --psColorsGradientHorz: linear-gradient(to right, #f05a28, #e80a89);
+  --psColorsGradientVert: linear-gradient(to bottom, #f05a28, #e80a89);
+
+  --psColorsCodeRed: #f26d6d;
+  --psColorsCodeOrange: #ff9466;
+  --psColorsCodeYellow: #ffca80;
+  --psColorsCodeGreen: #b8cc7a;
+  --psColorsCodeTurquoise: #abd9c6;
+  --psColorsCodeBlue: #8ac7e6;
+  --psColorsCodePurple: #e695bd;
+  --psColorsCodeSand: #d99077;
+}
+:root {
+  /* spacing */
+  --psLayoutSpacingXXSmall: 4px;
+  --psLayoutSpacingXSmall: 8px;
+  --psLayoutSpacingSmall: 12px;
+  --psLayoutSpacingMedium: 16px;
+  --psLayoutSpacingLarge: 24px;
+  --psLayoutSpacingXLarge: 48px;
+  --psLayoutSpacingXXLarge: 64px;
+}
+:root {
+  --psTypeFontFamily: "Gotham SSm A", "Gotham SSm B", sans-serif;
+  --psTypeFontFamilyCode: "Source Code Pro", monospace;
+
+  /* font size */
+  --psTypeFontSizeGigantic: 60px;
+  --psTypeFontSizeJumbo: 48px;
+  --psTypeFontSizeXXLarge: 36px;
+  --psTypeFontSizeXLarge: 30px;
+  --psTypeFontSizeLarge: 24px;
+  --psTypeFontSizeMedium: 18px;
+  --psTypeFontSizeSmall: 14px;
+  --psTypeFontSizeXSmall: 12px;
+
+  /* letter spacing */
+  --psTypeLetterSpacingGigantic: -1px;
+  --psTypeLetterSpacingJumbo: -0.72px;
+  --psTypeLetterSpacingXXLarge: -0.54px;
+  --psTypeLetterSpacingXLarge: -0.45px;
+  --psTypeLetterSpacingLarge: 0.36px;
+  --psTypeLetterSpacingMedium: 0;
+  --psTypeLetterSpacingSmall: 0;
+  --psTypeLetterSpacingXSmall: 0;
+
+  /* font weight */
+  --psTypeFontWeightBold: 700;
+  --psTypeFontWeightMedium: 500;
+  --psTypeFontWeightBook: 400;
+  --psTypeFontWeightLight: 300;
+  --psTypeFontWeightXLight: 200;
+
+  /* line height */
+  --psTypeLineHeightTight: 20px;
+  --psTypeLineHeightStandard: 24px;
+  --psTypeLineHeightExtra: 32px;
+  --psTypeLineHeightHuge: 40px;
+}
+:root {
+  /* motion */
+  --psMotionSpeedXFast: 100ms;
+  --psMotionSpeedFast: 200ms;
+  --psMotionSpeedNormal: 300ms;
+  --psMotionSpeedSlow: 400ms;
+  --psMotionSpeedXSlow: 500ms;
+}
+._2UWjZ2Sc {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  border: 0;
+}
+:root {
+  --zIndexBack: -1;
+  --zIndexVideo: 10;
+  --zIndexCommandLayer: 11;
+  --zIndexCaptions: 12;
+  --zIndexActionOverlay: 20;
+  --zIndexControls: 32;
+  --zIndexSliderBar: 33;
+  --zIndexTimelineMarker: 32;
+  --zIndexProgressBarTimestamp: 35;
+  --zIndexMarkerTick: 35;
+  --zIndexTooltips: 37;
+  --zIndexTimelineHandle: 40;
+  --zIndexKeyboardShortcuts: 50;
+  --zIndexErrorModal: 60;
+
+  --colorsMenu: rgba(54, 54, 54, 0.9);
+  --colorsMenuHover: rgba(238, 238, 238, 0.25);
+
+  --spacingMenuBottom: 50px;
+  --spacingMenuRight: 11px;
+
+  --progress-bar-hover-height: 5px;
+  --progress-bar-height: 3px;
+
+  --bar-speed: 200ms;
+  --menu-speed: 150ms;
+
+  --volumeSliderContainerWidth: 66px;
+  --volumeSliderWidth: 50px;
+
+  --centerHorizontally: {
+    position: absolute;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    left: 50%;
+  }
+
+  --centerVertically: {
+    position: absolute;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    top: 50%;
+  }
+
+  --centerBoth: {
+    position: absolute;
+    -webkit-transform: translate(-50%) translateY(-50%);
+            transform: translate(-50%) translateY(-50%);
+    left: 50%;
+    top: 50%;
+  }
+
+  --greedy: {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+.visually-hidden {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+</style><style data-emotion=""></style><style type="text/css" data-glamor=""></style><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/s-code-contents-63edaf0d7c691bf0403642343b813bf472548561.js.download"></script><style type="text/css" data-glamor=""></style><style type="text/css">body{font-family:Gotham SSm A,Gotham SSm B,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}</style><style type="text/css">.ko-icon--1c2AY{display:block;height:24px;width:24px;opacity:.4;line-height:1em;position:fixed;bottom:12px;left:17px;z-index:1039;cursor:pointer}</style><style type="text/css">.ko-background--1itC4{position:fixed;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.5);height:100%;width:100%;z-index:9998}.ko-modal--1KY6u{background:#fff;color:#000;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:300;left:50%;line-height:1.71429;padding-left:0;padding-right:0;position:fixed;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:800px;z-index:9999}</style><style type="text/css">.ko-bar--2w0EC{background:linear-gradient(270deg,#ff7b39,#eb2a89);height:4px;margin-left:0;margin-right:0}.ko-container--2-QkS{height:100%;width:100%}.ko-content--2m52R{margin:50px 50px 10px;min-height:580px}.ko-form--3d6Zs{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-line-pack:justify;align-content:space-between;height:100%;width:100%}.ko-form--3d6Zs .ko-formLeftItem--1OiVm{-ms-flex-direction:column;flex-direction:column;-ms-flex-line-pack:start;align-content:flex-start;-ms-flex-pack:start;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.ko-form--3d6Zs .ko-formLeftItem--1OiVm,.ko-form--3d6Zs .ko-formRightItem--2KcD2{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-box-pack:start;justify-content:flex-start}.ko-form--3d6Zs .ko-formRightItem--2KcD2{-ms-flex-direction:column;flex-direction:column;-ms-flex-line-pack:end;align-content:flex-end;-ms-flex-pack:start}.ko-form--3d6Zs .ko-formItem--1PNqj{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;max-width:360px;margin-bottom:15px;width:100%}.ko-form--3d6Zs .ko-formItem--1PNqj label{font-size:10pt;margin-bottom:5px}.ko-form--3d6Zs .ko-formItem--1PNqj select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fafafa;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);background-position:100%;background-repeat:no-repeat;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:40px;min-width:300px;padding-left:10px;width:300px}.ko-form--3d6Zs .ko-formItem--1PNqj select:hover{background-color:#f3f3f3;border-color:#999}.ko-form--3d6Zs .ko-formItem--1PNqj select:after,.ko-form--3d6Zs .ko-formItem--1PNqj select:before{content:"";position:absolute;pointer-events:none}.ko-form--3d6Zs .ko-formItem--1PNqj select:after{content:"\25BC";height:1em;font-size:.625em;line-height:1;right:1.2em;top:50%;margin-top:-.5em}.ko-form--3d6Zs .ko-formItem--1PNqj input[type=email],.ko-form--3d6Zs .ko-formItem--1PNqj input[type=text]{box-sizing:border-box;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:40px;min-width:300px;width:300px;padding-left:10px}.ko-form--3d6Zs .ko-formItem--1PNqj input[type=file]{display:none}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt span{width:300px}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt .ko-attachLabel--1hvaT{margin-bottom:5px}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt .ko-attachButton--vRcGb{cursor:pointer;display:inline-block;border:1px solid #f96816;box-sizing:border-box;color:#f96816;font-size:11pt;margin-right:10px;height:40px;width:150px;text-align:center;vertical-align:middle;line-height:2.5em}.ko-form--3d6Zs .ko-formItem--1PNqj textarea{box-sizing:border-box;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:120px;min-width:300px;max-width:300px;width:300px;padding:10px}.ko-form--3d6Zs .ko-formItem--1PNqj textarea:after{content:""}.ko-form--3d6Zs .ko-formItem--1PNqj button{-ms-flex-item-align:start;align-self:flex-start;background:#f96816;border:1px solid #f96816;box-sizing:border-box;color:#fff;cursor:pointer;font-size:11pt;height:40px;width:150px}.ko-form--3d6Zs .ko-formItem--1PNqj a,.ko-form--3d6Zs .ko-formItem--1PNqj a:visited{color:#f96816;text-decoration:none}.ko-form--3d6Zs .ko-formItem--1PNqj ul{list-style:none;padding:0}.ko-contactUs--F_8s7{font-size:11pt;line-height:20px;margin:auto 40px;padding-bottom:40px}.ko-contactUs--F_8s7 a{color:#f96816;text-decoration:none}.ko-contactUs--F_8s7 a:visited{color:#f96816}.ko-success--za-vG{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-left:auto;margin-right:auto;width:500px;height:100%}.ko-success--za-vG h3{font-size:36px;font-weight:300;letter-spacing:-.025em;line-height:1.3333;text-align:center}.ko-message--1asmA{text-align:center}</style><style type="text/css">.ko-articles--1WILY{overflow:scroll;margin:0;height:380px}</style><style type="text/css">.ko-banner--oA0KP{font-size:10pt;margin-bottom:20px}</style><style type="text/css">.ko-modalClose--2GYy4{position:absolute;right:15px;top:15px;width:15px;height:15px;cursor:pointer}</style><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/satellite-57991a4f64746d57b50000e3.js.download"></script><script async="" type="text/javascript" charset="utf-8" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/features-17.8.1.js.download"></script><script async="" type="text/javascript" charset="utf-8" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/search-parcel-17.8.1.js.download"></script><style type="text/css" data-glamor=""></style><iframe src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource.html"></iframe><iframe src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource(1).html"></iframe><iframe src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource(2).html"></iframe><link rel="stylesheet" type="text/css" href="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/container.ac63c826476002d8c5fe809d0e36a7b353b7224b.css"><iframe src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource(3).html"></iframe><script type="text/javascript" async="" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/kowidget.v1.4.0.js.download"></script><style type="text/css">body{font-family:Gotham SSm A,Gotham SSm B,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}.ko-triggerButton--3ry6e{border:none;margin:0;padding:0;width:auto;overflow:visible;background:transparent;color:inherit;font:inherit;line-height:normal;-webkit-font-smoothing:inherit;-moz-osx-font-smoothing:inherit;-webkit-appearance:none;position:fixed;bottom:12px;left:17px;z-index:1039;cursor:pointer}.ko-triggerButton--3ry6e::-moz-focus-inner{border:0;padding:0}</style><style type="text/css">.ko-icon--1c2AY{display:block;height:24px;width:24px;opacity:.4;line-height:1em}</style><style type="text/css">.ko-background--1itC4{position:fixed;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.5);height:100%;width:100%;z-index:9998}.ko-modal--1KY6u{background:#fff;color:#000;display:-webkit-box;display:-ms-flexbox;display:flex;font-weight:300;left:50%;line-height:1.71429;padding-left:0;padding-right:0;position:fixed;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);width:800px;z-index:9999}</style><style type="text/css">.ko-bar--2w0EC{background:linear-gradient(270deg,#ff7b39,#eb2a89);height:4px;margin-left:0;margin-right:0}.ko-container--2-QkS{height:100%;width:100%}.ko-content--2m52R{margin:50px 50px 10px;min-height:580px}.ko-form--3d6Zs{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-line-pack:justify;align-content:space-between;height:100%;width:100%}.ko-form--3d6Zs .ko-formLeftItem--1OiVm{-ms-flex-direction:column;flex-direction:column;-ms-flex-line-pack:start;align-content:flex-start;-ms-flex-pack:start;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.ko-form--3d6Zs .ko-formLeftItem--1OiVm,.ko-form--3d6Zs .ko-formRightItem--2KcD2{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-box-pack:start;justify-content:flex-start}.ko-form--3d6Zs .ko-formRightItem--2KcD2{-ms-flex-direction:column;flex-direction:column;-ms-flex-line-pack:end;align-content:flex-end;-ms-flex-pack:start}.ko-form--3d6Zs .ko-formItem--1PNqj{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;max-width:360px;margin-bottom:15px;width:100%}.ko-form--3d6Zs .ko-formItem--1PNqj label{font-size:10pt;margin-bottom:5px}.ko-form--3d6Zs .ko-formItem--1PNqj select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:#fafafa;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);background-position:100%;background-repeat:no-repeat;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:40px;min-width:300px;padding-left:10px;width:300px}.ko-form--3d6Zs .ko-formItem--1PNqj select:hover{background-color:#f3f3f3;border-color:#999}.ko-form--3d6Zs .ko-formItem--1PNqj select:after,.ko-form--3d6Zs .ko-formItem--1PNqj select:before{content:"";position:absolute;pointer-events:none}.ko-form--3d6Zs .ko-formItem--1PNqj select:after{content:"\25BC";height:1em;font-size:.625em;line-height:1;right:1.2em;top:50%;margin-top:-.5em}.ko-form--3d6Zs .ko-formItem--1PNqj input[type=email],.ko-form--3d6Zs .ko-formItem--1PNqj input[type=text]{box-sizing:border-box;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:40px;min-width:300px;width:300px;padding-left:10px}.ko-form--3d6Zs .ko-formItem--1PNqj input[type=file]{display:none}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt span{width:300px}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt .ko-attachLabel--1hvaT{margin-bottom:5px}.ko-form--3d6Zs .ko-formItem--1PNqj .ko-attach--2Nzdt .ko-attachButton--vRcGb{cursor:pointer;display:inline-block;border:1px solid #f96816;box-sizing:border-box;color:#f96816;font-size:11pt;margin-right:10px;height:40px;width:150px;text-align:center;vertical-align:middle;line-height:2.5em}.ko-form--3d6Zs .ko-formItem--1PNqj textarea{box-sizing:border-box;border:1px solid #ccc;border-radius:0;color:rgba(0,0,0,.75);height:120px;min-width:300px;max-width:300px;width:300px;padding:10px}.ko-form--3d6Zs .ko-formItem--1PNqj textarea:after{content:""}.ko-form--3d6Zs .ko-formItem--1PNqj button{-ms-flex-item-align:start;align-self:flex-start;background:#f96816;border:1px solid #f96816;box-sizing:border-box;color:#fff;cursor:pointer;font-size:11pt;height:40px;width:150px}.ko-form--3d6Zs .ko-formItem--1PNqj a,.ko-form--3d6Zs .ko-formItem--1PNqj a:visited{color:#f96816;text-decoration:none}.ko-form--3d6Zs .ko-formItem--1PNqj ul{list-style:none;padding:0}.ko-contactUs--F_8s7{font-size:11pt;line-height:20px;margin:auto 40px;padding-bottom:40px}.ko-contactUs--F_8s7 a{color:#f96816;text-decoration:none}.ko-contactUs--F_8s7 a:visited{color:#f96816}.ko-success--za-vG{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;margin-left:auto;margin-right:auto;width:500px;height:100%}.ko-success--za-vG h3{font-size:36px;font-weight:300;letter-spacing:-.025em;line-height:1.3333;text-align:center}.ko-message--1asmA{text-align:center}</style><style type="text/css">.ko-articles--1WILY{overflow:scroll;margin:0;height:380px}</style><style type="text/css">.ko-banner--oA0KP{font-size:10pt;margin-bottom:20px}</style><style type="text/css">.ko-modalClose--2GYy4{border:none;margin:0;padding:0;width:auto;overflow:visible;background:transparent;color:inherit;font:inherit;line-height:normal;-webkit-font-smoothing:inherit;-moz-osx-font-smoothing:inherit;-webkit-appearance:none;position:absolute;right:15px;top:15px;width:15px;height:15px;cursor:pointer}.ko-modalClose--2GYy4::-moz-focus-inner{border:0;padding:0}</style><script async="" type="text/javascript" charset="utf-8" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/prism-17.8.1.js.download"></script><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/satellite-5ca22c8a64746d5a29003e92.js.download"></script><script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/satellite-5ca22c8a64746d5a29003e92.js.download"></script></head>
+
+  <body class="ps-prism--loaded">
+    <div id="ps-container">
+      <div id="ps-chrome"><div data-css-ztkp3a=""><span data-css-gyrv08=""></span><a data-css-19p85zj="" href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/creating-a-data-access-library#ps-main">Skip to main content</a><div data-css-78q6vw=""><div data-css-93o85v=""><div data-css-jqwi36=""><a data-css-1vj4k8x="" href="https://app.pluralsight.com/library/" data-css-102nxoq=""><span data-css-1jhb94k="" title="Home"><span data-css-1q33krd=""><svg role="img" aria-label="home icon" viewBox="0 0 24 24"><title>home</title><path fill-rule="evenodd" fill="currentColor" d="M20.5703897,13.4986182 L21.5126731,14.4766708 C21.6987855,14.6699043 22.0003009,14.6698052 22.1864133,14.4765718 L22.8605347,13.7762366 C23.0466471,13.5826069 23.0464565,13.2690358 22.8601536,13.0759014 L12.3307469,2.14486754 C12.1446345,1.95166576 11.843119,1.95175589 11.6569113,2.14486754 L1.13959288,13.0758023 C0.953469041,13.2691349 0.953469041,13.582706 1.13959288,13.7761375 L1.81336646,14.4764727 C1.99948839,14.6698052 2.3011277,14.6698052 2.48724963,14.4764727 L3.41717315,13.5100082 L3.41717315,21.009567 C3.41717315,21.5565831 3.84385941,22 4.37012963,22 L9.13491201,22 C9.66118223,22 10.0878685,21.5565831 10.0878685,21.009567 L10.0878685,17.0473397 C10.0878685,15.9533074 10.9411457,15.0664737 11.9937814,15.0664737 C13.0464172,15.0664737 13.8996944,15.9533074 13.8996944,17.0473397 L13.8996944,21.009567 C13.8996944,21.5565831 14.3264283,22 14.8526509,22 L19.6174333,22 C20.1436558,22 20.5703897,21.5565831 20.5703897,21.009567 L20.5703897,13.4986182 Z M5.3230861,11.5291421 L11.9938767,4.59592284 L18.6644768,11.5202282 L18.6644768,20.019134 L15.8056073,20.019134 L15.8056073,17.0473397 C15.8056073,14.8593741 14.0989576,13.0856076 11.9937814,13.0856076 C9.88859576,13.0856076 8.18195553,14.8593741 8.18195553,17.0473397 L8.18195553,20.019134 L5.3230861,20.019134 L5.3230861,11.5291421 Z"></path></svg></span></span><span data-css-139qjdt="">Home</span><div data-css-pvypx1=""><div data-css-di22p9="">Home<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a><a data-css-1vj4k8x="" href="https://app.pluralsight.com/library/browse" data-css-102nxoq=""><span data-css-1jhb94k="" title="Browse"><span data-css-1q33krd=""><svg role="img" aria-label="browse icon" viewBox="0 0 24 24"><title>browse</title><path fill="currentColor" clip-rule="evenodd" d="m3 9h18c.5523 0 1 .44772 1 1v10c0 .5523-.4477 1-1 1h-18c-.55228 0-1-.4477-1-1v-10c0-.55228.44772-1 1-1zm1 2v8h16v-8zm1-5h14c.5523 0 1 .44772 1 1v1h-16v-1c0-.55228.44772-1 1-1zm3-3h8c.5523 0 1 .44772 1 1v1h-10v-1c0-.55228.44772-1 1-1z" fill-rule="evenodd"></path></svg></span></span><span data-css-139qjdt="">Browse</span><div data-css-pvypx1=""><div data-css-di22p9="">Browse<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a><div data-css-mfy564=""><div id="prism-search"><div data-css-158z3oa=""><span data-css-gyrv08=""></span><div data-css-rt19e9=""><label data-css-hty439=""><form data-css-144quq4="" action="https://app.pluralsight.com/search" autocomplete="off" role="search"><label for="prism-search-input" data-css-tvdde3="">Search</label><div aria-live="polite" role="region" data-css-tvdde3=""></div><span data-css-1q33krd="" data-css-1kqp8s2="" aria-label="Search glass"><svg role="img" aria-label="search icon" viewBox="0 0 24 24"><title>search</title><path fill-rule="evenodd" fill="currentColor" d="M21.3534,20.6476 C21.5487,20.4523 21.5487,20.1357 21.3535,19.9404 L16.314,14.9 C17.403,13.504 18,11.79895 18,10 C18,7.86304 17.167,5.85596 15.656,4.34399 C14.145,2.832031 12.137,2 10,2 C7.86304,2 5.854,2.832031 4.34399,4.34399 C2.832031,5.85596 2,7.86304 2,10 C2,12.137 2.832031,14.146 4.34399,15.656 C5.854,17.168 7.86304,18 10,18 C11.79895,18 13.504,17.4041 14.9,16.3149 L19.9395,21.3545 C20.1348,21.5497 20.4513,21.5497 20.6466,21.3545 L21.3534,20.6476 Z M14.2419,14.243 C13.109,15.376 11.60205,16 10,16 C8.39697,16 6.89099,15.376 5.75806,14.243 C4.62402,13.11 4,11.60303 4,10 C4,8.39795 4.62402,6.89099 5.75806,5.75806 C6.89099,4.62402 8.39697,4 10,4 C11.60205,4 13.109,4.62402 14.2419,5.75806 C15.376,6.89099 16,8.39795 16,10 C16,11.60303 15.376,13.11 14.2419,14.243 Z"></path></svg></span><input data-css-61utp7="" aria-autocomplete="list" aria-owns="prism-search-results" id="prism-search-input" name="q" placeholder="Search…" role="combobox"><div id="prism-search-results" data-css-1hanm9f=""></div></form></label></div></div></div></div><div data-css-jsf5cn=""><div id="ps-account-switcher"></div></div><div data-css-fzywwc=""><a data-css-1vj4k8x="" href="https://app.pluralsight.com/paths" data-css-102nxoq=""><span data-css-1jhb94k="" title="Paths"><span data-css-1q33krd=""><svg role="img" aria-label="paths icon" viewBox="0 0 24 24"><title>paths</title><path fill="currentColor" fill-rule="evenodd" d="M4.41132,9.7929665 L7.85066,13.2323465 C7.94443,13.3260465 7.99711,13.4532465 7.99711,13.5858465 L7.99711,21.2929465 C7.99711,21.5691465 7.77325,21.7929465 7.49711,21.7929465 L6.5,21.7929465 C6.22393,21.7929465 6.00011,21.5690465 6,21.2929465 L5.99711,14.2071465 L3,11.2100765 L3,13.2929465 C3,13.5691465 2.77614,13.7929465 2.5,13.7929465 L1.5,13.7929465 C1.223858,13.7929465 1,13.5691465 1,13.2929465 L1,8.2929665 C1,8.0168265 1.223858,7.7929665 1.5,7.7929665 L6.5,7.7929665 C6.77614,7.7929665 7,8.0168265 7,8.2929665 L7,9.2929665 C7,9.5691065 6.77614,9.7929665 6.5,9.7929665 L4.41132,9.7929665 Z M21,11.2071865 L18,14.2071465 L18,21.2929465 C18,21.5691465 17.7761,21.7929465 17.5,21.7929465 L16.5,21.7929465 C16.2239,21.7929465 16,21.5691465 16,21.2929465 L16,13.5858465 C16,13.4532465 16.0527,13.3260465 16.1464,13.2323465 L19.5858,9.7929665 L17.5,9.7929665 C17.2239,9.7929665 17,9.5691065 17,9.2929665 L17,8.2929665 C17,8.0168265 17.2239,7.7929665 17.5,7.7929665 L22.5,7.7929665 C22.7761,7.7929665 23,8.0168265 23,8.2929665 L23,13.2929465 C23,13.5691465 22.7761,13.7929465 22.5,13.7929465 L21.5,13.7929465 C21.2239,13.7929465 21,13.5691465 21,13.2929465 L21,11.2071865 Z M12.5001,21.7928465 L11.5001,21.7928465 C11.2239,21.7928465 11.0001,21.5690465 11.0001,21.2928465 L11.0001,5.6239565 L9.52782,7.0961965 C9.33256,7.2914565 9.01598,7.2914565 8.82072,7.0961965 L8.11361,6.3890865 C7.91835,6.1938265 7.91835,5.8772465 8.11361,5.6819765 L11.6491,2.1464465 C11.8444,1.9511845 12.161,1.9511845 12.3563,2.1464465 L15.8918,5.6819765 C16.087,5.8772465 16.087,6.1938265 15.8918,6.3890865 L15.1847,7.0961965 C14.9894,7.2914565 14.6728,7.2914565 14.4776,7.0961965 L13.0001,5.6186765 L13.0001,21.2928465 C13.0001,21.5690465 12.7762,21.7928465 12.5001,21.7928465 Z"></path></svg></span></span><span data-css-139qjdt="">Paths</span><div data-css-pvypx1=""><div data-css-di22p9="">Paths<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a><a data-css-1vj4k8x="" href="https://app.pluralsight.com/channels" data-css-102nxoq=""><span data-css-1jhb94k="" title="Channels"><span data-css-1q33krd=""><svg role="img" aria-label="channels icon" viewBox="0 0 24 24"><title>channels</title><path fill="currentColor" fill-rule="evenodd" d="M12.5217391,23 L11.4782609,23 C11.1901565,23 10.9565217,22.7713655 10.9565217,22.4894273 L10.9565217,13.661625 C9.44792348,13.2223283 8.34782609,11.8547082 8.34782609,10.2356719 C8.34782609,8.26179777 9.98295652,6.66166287 12,6.66166287 C14.0170435,6.66166287 15.6521739,8.26179777 15.6521739,10.2356719 C15.6521739,11.8547082 14.5520348,13.2223283 13.0434783,13.661625 L13.0434783,22.4894273 C13.0434783,22.7713655 12.8098435,23 12.5217391,23 Z M5.75491826,2.70149751 C3.5169913,4.48014904 2.08695652,7.19447614 2.08695652,10.2356719 C2.08695652,13.0783468 3.33641739,15.6354991 5.32722783,17.4098414 C5.40146087,17.4759096 5.49705391,17.55658 5.61401739,17.6518529 C5.82866087,17.8265709 5.86464,18.1357737 5.69570087,18.3532777 L5.06362435,19.1671306 C4.8892487,19.3916805 4.56194087,19.4353855 4.33249043,19.2647521 C4.3269913,19.2606675 4.32158609,19.2564808 4.31625391,19.252192 C4.18413913,19.1455845 4.07623304,19.0555194 3.99253565,18.9820991 C1.54186435,16.8320774 0,13.7100273 0,10.2356719 C0,6.52304238 1.76054609,3.21282587 4.50921391,1.06088747 C4.63164522,0.965041741 4.81027826,0.984463927 4.90821913,1.10426675 C4.90969043,1.10606601 4.91114087,1.10788365 4.91257043,1.10971763 L5.80861565,2.26346696 C5.91444522,2.39973882 5.89068522,2.59359307 5.75491826,2.70149751 Z M24,10.2356719 C24,13.6882769 22.4774609,16.7928654 20.0535652,18.9414575 C19.9593391,19.0249872 19.836,19.1283271 19.6835478,19.2514772 C19.4614957,19.4310967 19.1325913,19.4002581 18.9491478,19.1828563 C18.9446609,19.1776484 18.9402783,19.1722363 18.936,19.1667222 L18.3041739,18.3531756 C18.1352348,18.1355695 18.1712348,17.8264688 18.3858783,17.6517508 C18.5074435,17.5528018 18.6064696,17.4690679 18.6830609,17.400549 C20.6678609,15.6266152 21.9130435,13.0734453 21.9130435,10.2356719 C21.9130435,7.39145509 20.6622261,4.83312838 18.6696,3.0587146 C18.5961391,2.99328981 18.5016,2.91356899 18.386087,2.81955213 C18.1714435,2.64480351 18.1353391,2.33563131 18.3042783,2.11804564 L18.9377739,1.30245168 C19.1120348,1.07796 19.4393739,1.03429889 19.6688348,1.20491187 C19.6741565,1.20889331 19.6793739,1.21297585 19.6845913,1.21715642 C19.7409391,1.26248711 19.7897739,1.30259157 19.8310957,1.33747186 C22.3839652,3.49096546 24,6.6786241 24,10.2356719 Z M8.15601391,6.06943937 C8.0766887,6.13773358 8.01096,6.19718466 7.95880696,6.24779263 C6.91024696,7.26542532 6.26086957,8.67633176 6.26086957,10.2356719 C6.26086957,11.8110032 6.92366609,13.2348883 7.99125913,14.2548084 C8.0357113,14.2972881 8.09045217,14.3465073 8.15549217,14.402466 C8.36101565,14.5793284 8.39191304,14.8815875 8.22631304,15.0948026 L7.59253565,15.9108 C7.41821217,16.1353498 7.09088348,16.1789527 6.86150609,16.0083193 C6.85321043,16.0021925 6.84510261,15.9957593 6.83720348,15.9891218 C6.77398957,15.9359201 6.71990609,15.8889474 6.67496348,15.8481016 C5.13649043,14.4495408 4.17391304,12.4525888 4.17391304,10.2356719 C4.17391304,7.98130954 5.16925565,5.95443797 6.75333913,4.55296692 C6.77773565,4.5313697 6.8051687,4.50771997 6.83562783,4.48199732 C7.05376696,4.29778268 7.38322435,4.32152431 7.57146783,4.53499476 C7.57852174,4.54299033 7.58532522,4.55120034 7.59185739,4.55961458 L8.22679304,5.37718446 C8.39237217,5.59038941 8.36146435,5.89256677 8.15601391,6.06943937 Z M19.826087,10.2356719 C19.826087,12.4929241 18.8282087,14.5220422 17.2406609,15.9236664 C17.217913,15.9437829 17.1925565,15.9655333 17.1645913,15.9892239 C16.9465043,16.1735407 16.6170783,16.1499522 16.4287304,15.9365328 C16.4216348,15.9284658 16.4147478,15.9201945 16.4081739,15.9118211 L15.7723826,15.0930667 C15.606887,14.8800558 15.6376696,14.578103 15.842713,14.4012407 C15.9469565,14.3111756 16.0315826,14.2338749 16.096487,14.1691343 C17.1125217,13.1559538 17.7391304,11.7674002 17.7391304,10.2356719 C17.7391304,8.72266112 17.1277565,7.34939411 16.1336348,6.33954255 C16.0603826,6.26518274 15.9631304,6.17550575 15.8416696,6.07051157 C15.6369391,5.89347559 15.6064696,5.59184965 15.7717565,5.3790021 L16.4071304,4.5609727 C16.5813913,4.33647388 16.9087304,4.2928097 17.1381913,4.46342268 C17.1464348,4.4695904 17.1545739,4.47599298 17.1624,4.48263043 C17.2382609,4.54636011 17.3022261,4.60217592 17.3544,4.65007785 C18.8757913,6.04724988 19.826087,8.03285696 19.826087,10.2356719 Z M12,11.7674002 C12.8644174,11.7674002 13.5652174,11.081599 13.5652174,10.2356719 C13.5652174,9.38972438 12.8644174,8.70395374 12,8.70395374 C11.1355826,8.70395374 10.4347826,9.38972438 10.4347826,10.2356719 C10.4347826,11.081599 11.1355826,11.7674002 12,11.7674002 Z"></path></svg></span></span><span data-css-139qjdt="">Channels</span><div data-css-pvypx1=""><div data-css-di22p9="">Channels<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a><a data-css-1vj4k8x="" href="https://app.pluralsight.com/library/bookmarks" data-css-102nxoq=""><span data-css-1jhb94k="" title="Bookmarks"><span data-css-1q33krd=""><svg role="img" aria-label="bookmark icon" viewBox="0 0 24 24"><title>bookmark</title><path fill="currentColor" fill-rule="evenodd" d="M16.5012,2 L8,2 C5.79401,2 4,3.79501 4,6 L4,21.7146 C4,21.9907 4.223877,22.2146 4.5,22.2146 C4.640137,22.2146 4.773865,22.1558 4.868591,22.0525 L9.5,17 L14.1314,22.0525 C14.318,22.256 14.6343,22.2698 14.8379,22.0832 C14.9412,21.9885 15,21.8547 15,21.7146 L15,10 L19,10 C19.552,10 20,9.55301 20,9 L20,6 C20,3.79501 18.7083,2 16.5012,2 Z M13,6 L13,18 L9.5,14 L6,18 L6,6 C6,4.896 6.89697,4 8,4 L13.53601,4 C13.19598,4.58899 13,5.272 13,6 Z M15,8 L18,8 L18,6 C18,4.896 17.6033,4 16.5012,4 C15.3983,4 15,4.896 15,6 L15,8 Z"></path></svg></span></span><span data-css-139qjdt="">Bookmarks</span><div data-css-pvypx1=""><div data-css-di22p9="">Bookmarks<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a><a data-css-1vj4k8x="" href="https://app.pluralsight.com/questions-and-answers" data-css-102nxoq=""><span data-css-1jhb94k="" title="Q&amp;A"><span data-css-1q33krd=""><svg role="img" aria-label="questions and answers icon" viewBox="0 0 24 24"><title>questions and answers</title><path fill-rule="evenodd" fill="currentColor" d="M10.091101,11.05701 C10.134311,11.02136 10.189731,11 10.250041,11 L18.750061,11 C18.888061,11 19.000061,11.11194 19.000061,11.25 L19.000061,12.75 C19.000061,12.8881 18.888061,13 18.750061,13 L10.250041,13 C10.111981,13 10.000041,12.8881 10.000041,12.75 L10.000041,11.25 C10.000041,11.17224 10.035441,11.10278 10.091101,11.05701 Z M10.250041,14 L16.750061,14 C16.812661,14 16.869861,14.0231 16.913761,14.0612 C16.966561,14.1069 17.000061,14.1746 17.000061,14.25 L17.000061,15.75 C17.000061,15.8881 16.888061,16 16.750061,16 L10.250041,16 C10.184491,16 10.124791,15.9747 10.080121,15.9333 C10.030801,15.8877 10.000041,15.8225 10.000041,15.75 L10.000041,14.25 C10.000041,14.1119 10.111981,14 10.250041,14 Z M20.000061,7 L22.000061,7 C22.552361,7 23.000061,7.44772 23.000061,8 L23.000061,22.1169 C23.000061,22.5055 22.576061,22.7456 22.242861,22.5457 L18.000061,20 L7.00001104,20 C6.44772104,20 6.00000104,19.5523 6.00001104,19 L6.00004104,17 L2.00000004,17 C1.44771404,17 0.999998502,16.5523 1,16 L1.00003526,2.999997 C1.00003676,2.447714 1.44775304,2 2.00003604,2 L19.000061,2 C19.552361,2 20.000061,2.447715 20.000061,3 L20.000061,7 Z M17.999761,7 L17.999661,6.1178 C17.999561,5.41187 17.999461,4.70593 18.000061,4 L3.00004104,4 L3.00004104,15.0033 L6.00004104,15.0033 L6.00000104,8.00001 C6.00000104,7.44772 6.44772104,7 7.00000104,7 L17.999761,7 Z M8.00004104,9 L8.00004104,18 L18.500061,18 L21.000061,19.5 L21.000061,9 L8.00004104,9 Z"></path></svg></span></span><span data-css-139qjdt="">Q&amp;A</span><div data-css-pvypx1=""><div data-css-di22p9="">Q&amp;A<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a></div><div data-css-pti95d=""></div><undefined></undefined><a data-css-1xu9nul="" href="https://app.pluralsight.com/communications/notifications" icon="[object Object]" id="prism-notifications" product="skills" tooltiptext="Notifications"><span data-css-13azwyo="" unreadcount="0"><span data-css-1q33krd=""><svg role="img" aria-label="bell icon" viewBox="0 0 24 24"><title>bell</title><path fill="currentColor" fill-rule="evenodd" d="M19.6,16.1 C19.9,16.3 20,16.6 20.1,16.9 C20.1,17.5 19.6,18 19,18 L5.09998,18 C4.5,18 4,17.5 4,16.9 C4,16.6 4.0999756,16.3 4.400024,16.2 C5.40002,15.2 5.59998,13.2 5.59998,12.1 L5.59998,9.90002 C5.59998,7.09998 7.5,4.69995 10,3.80005 C10.09998,2.800049 11,2 12,2 C13,2 13.90002,2.800049 14,3.80005 C16.5,4.69995 18.4,7.09998 18.4,9.90002 L18.4,12 C18.4,13.1 18.6,15.1 19.6,16.1 Z M7.58655,12.2646 C7.48999,13.4352 7.37292,14.8544 6.80005,16 L17.2001,16 C16.6001,14.7 16.4,13.3 16.4,12.1 L16.4,9.90002 C16.4,7.5 14.4,5.5 12,5.5 C9.6001,5.5 7.6001,7.5 7.6001,9.90002 L7.6001,12.1 L7.58655,12.2646 Z M15,19 C15,20.7 13.69995,22 12,22 C10.30005,22 9,20.7 9,19 L15,19 Z"></path></svg></span></span><div data-css-pvypx1="" href="/communications/notifications" icon="[object Object]" id="prism-notifications" product="skills" tooltiptext="Notifications"><div data-css-di22p9="">Notifications<div data-css-7rg6s9="" aria-hidden="true"></div></div></div></a></div><div data-css-13azwyo="" qnaenabled="true"><a data-css-phbfaf="" data-testid="button" href="https://app.pluralsight.com/profile" data-css-11sxn4q=""><div data-css-1ve6hty=""><div aria-label="Braiden Dillman" data-css-1t3n2j3="">BD</div></div><svg aria-hidden="true" viewBox="0 0 24 24" data-css-1sqeyzv=""><path fill-rule="evenodd" fill="currentColor" d="M11.4393375,14.8498284 L7.1464465,10.5569384 C6.9511845,10.3616784 6.9511845,10.0450984 7.1464465,9.84982837 L7.8498275,9.14644637 C8.0448975,8.95137737 8.3611075,8.95115637 8.5564475,9.14595337 L11.7928975,12.3733884 L15.0293375,9.14595337 C15.2246775,8.95115637 15.5408875,8.95137737 15.7359575,9.14644637 L16.4393375,9.84982837 C16.6345975,10.0450984 16.6345975,10.3616784 16.4393375,10.5569384 L12.1464475,14.8498284 C11.9511875,15.0450984 11.6345975,15.0450984 11.4393375,14.8498284 Z"></path></svg></a><div data-css-1njirlf=""><div data-css-1v4ckdk="" data-testid="menu" tabindex="-1"><div data-css-it6g91=""><a data-css-epqhf0="" data-link-name="paths" href="https://app.pluralsight.com/paths"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="paths icon" viewBox="0 0 24 24"><title>paths</title><path fill="currentColor" fill-rule="evenodd" d="M4.41132,9.7929665 L7.85066,13.2323465 C7.94443,13.3260465 7.99711,13.4532465 7.99711,13.5858465 L7.99711,21.2929465 C7.99711,21.5691465 7.77325,21.7929465 7.49711,21.7929465 L6.5,21.7929465 C6.22393,21.7929465 6.00011,21.5690465 6,21.2929465 L5.99711,14.2071465 L3,11.2100765 L3,13.2929465 C3,13.5691465 2.77614,13.7929465 2.5,13.7929465 L1.5,13.7929465 C1.223858,13.7929465 1,13.5691465 1,13.2929465 L1,8.2929665 C1,8.0168265 1.223858,7.7929665 1.5,7.7929665 L6.5,7.7929665 C6.77614,7.7929665 7,8.0168265 7,8.2929665 L7,9.2929665 C7,9.5691065 6.77614,9.7929665 6.5,9.7929665 L4.41132,9.7929665 Z M21,11.2071865 L18,14.2071465 L18,21.2929465 C18,21.5691465 17.7761,21.7929465 17.5,21.7929465 L16.5,21.7929465 C16.2239,21.7929465 16,21.5691465 16,21.2929465 L16,13.5858465 C16,13.4532465 16.0527,13.3260465 16.1464,13.2323465 L19.5858,9.7929665 L17.5,9.7929665 C17.2239,9.7929665 17,9.5691065 17,9.2929665 L17,8.2929665 C17,8.0168265 17.2239,7.7929665 17.5,7.7929665 L22.5,7.7929665 C22.7761,7.7929665 23,8.0168265 23,8.2929665 L23,13.2929465 C23,13.5691465 22.7761,13.7929465 22.5,13.7929465 L21.5,13.7929465 C21.2239,13.7929465 21,13.5691465 21,13.2929465 L21,11.2071865 Z M12.5001,21.7928465 L11.5001,21.7928465 C11.2239,21.7928465 11.0001,21.5690465 11.0001,21.2928465 L11.0001,5.6239565 L9.52782,7.0961965 C9.33256,7.2914565 9.01598,7.2914565 8.82072,7.0961965 L8.11361,6.3890865 C7.91835,6.1938265 7.91835,5.8772465 8.11361,5.6819765 L11.6491,2.1464465 C11.8444,1.9511845 12.161,1.9511845 12.3563,2.1464465 L15.8918,5.6819765 C16.087,5.8772465 16.087,6.1938265 15.8918,6.3890865 L15.1847,7.0961965 C14.9894,7.2914565 14.6728,7.2914565 14.4776,7.0961965 L13.0001,5.6186765 L13.0001,21.2928465 C13.0001,21.5690465 12.7762,21.7928465 12.5001,21.7928465 Z"></path></svg></span></span>Paths</a><a data-css-epqhf0="" data-link-name="channels" href="https://app.pluralsight.com/channels"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="channels icon" viewBox="0 0 24 24"><title>channels</title><path fill="currentColor" fill-rule="evenodd" d="M12.5217391,23 L11.4782609,23 C11.1901565,23 10.9565217,22.7713655 10.9565217,22.4894273 L10.9565217,13.661625 C9.44792348,13.2223283 8.34782609,11.8547082 8.34782609,10.2356719 C8.34782609,8.26179777 9.98295652,6.66166287 12,6.66166287 C14.0170435,6.66166287 15.6521739,8.26179777 15.6521739,10.2356719 C15.6521739,11.8547082 14.5520348,13.2223283 13.0434783,13.661625 L13.0434783,22.4894273 C13.0434783,22.7713655 12.8098435,23 12.5217391,23 Z M5.75491826,2.70149751 C3.5169913,4.48014904 2.08695652,7.19447614 2.08695652,10.2356719 C2.08695652,13.0783468 3.33641739,15.6354991 5.32722783,17.4098414 C5.40146087,17.4759096 5.49705391,17.55658 5.61401739,17.6518529 C5.82866087,17.8265709 5.86464,18.1357737 5.69570087,18.3532777 L5.06362435,19.1671306 C4.8892487,19.3916805 4.56194087,19.4353855 4.33249043,19.2647521 C4.3269913,19.2606675 4.32158609,19.2564808 4.31625391,19.252192 C4.18413913,19.1455845 4.07623304,19.0555194 3.99253565,18.9820991 C1.54186435,16.8320774 0,13.7100273 0,10.2356719 C0,6.52304238 1.76054609,3.21282587 4.50921391,1.06088747 C4.63164522,0.965041741 4.81027826,0.984463927 4.90821913,1.10426675 C4.90969043,1.10606601 4.91114087,1.10788365 4.91257043,1.10971763 L5.80861565,2.26346696 C5.91444522,2.39973882 5.89068522,2.59359307 5.75491826,2.70149751 Z M24,10.2356719 C24,13.6882769 22.4774609,16.7928654 20.0535652,18.9414575 C19.9593391,19.0249872 19.836,19.1283271 19.6835478,19.2514772 C19.4614957,19.4310967 19.1325913,19.4002581 18.9491478,19.1828563 C18.9446609,19.1776484 18.9402783,19.1722363 18.936,19.1667222 L18.3041739,18.3531756 C18.1352348,18.1355695 18.1712348,17.8264688 18.3858783,17.6517508 C18.5074435,17.5528018 18.6064696,17.4690679 18.6830609,17.400549 C20.6678609,15.6266152 21.9130435,13.0734453 21.9130435,10.2356719 C21.9130435,7.39145509 20.6622261,4.83312838 18.6696,3.0587146 C18.5961391,2.99328981 18.5016,2.91356899 18.386087,2.81955213 C18.1714435,2.64480351 18.1353391,2.33563131 18.3042783,2.11804564 L18.9377739,1.30245168 C19.1120348,1.07796 19.4393739,1.03429889 19.6688348,1.20491187 C19.6741565,1.20889331 19.6793739,1.21297585 19.6845913,1.21715642 C19.7409391,1.26248711 19.7897739,1.30259157 19.8310957,1.33747186 C22.3839652,3.49096546 24,6.6786241 24,10.2356719 Z M8.15601391,6.06943937 C8.0766887,6.13773358 8.01096,6.19718466 7.95880696,6.24779263 C6.91024696,7.26542532 6.26086957,8.67633176 6.26086957,10.2356719 C6.26086957,11.8110032 6.92366609,13.2348883 7.99125913,14.2548084 C8.0357113,14.2972881 8.09045217,14.3465073 8.15549217,14.402466 C8.36101565,14.5793284 8.39191304,14.8815875 8.22631304,15.0948026 L7.59253565,15.9108 C7.41821217,16.1353498 7.09088348,16.1789527 6.86150609,16.0083193 C6.85321043,16.0021925 6.84510261,15.9957593 6.83720348,15.9891218 C6.77398957,15.9359201 6.71990609,15.8889474 6.67496348,15.8481016 C5.13649043,14.4495408 4.17391304,12.4525888 4.17391304,10.2356719 C4.17391304,7.98130954 5.16925565,5.95443797 6.75333913,4.55296692 C6.77773565,4.5313697 6.8051687,4.50771997 6.83562783,4.48199732 C7.05376696,4.29778268 7.38322435,4.32152431 7.57146783,4.53499476 C7.57852174,4.54299033 7.58532522,4.55120034 7.59185739,4.55961458 L8.22679304,5.37718446 C8.39237217,5.59038941 8.36146435,5.89256677 8.15601391,6.06943937 Z M19.826087,10.2356719 C19.826087,12.4929241 18.8282087,14.5220422 17.2406609,15.9236664 C17.217913,15.9437829 17.1925565,15.9655333 17.1645913,15.9892239 C16.9465043,16.1735407 16.6170783,16.1499522 16.4287304,15.9365328 C16.4216348,15.9284658 16.4147478,15.9201945 16.4081739,15.9118211 L15.7723826,15.0930667 C15.606887,14.8800558 15.6376696,14.578103 15.842713,14.4012407 C15.9469565,14.3111756 16.0315826,14.2338749 16.096487,14.1691343 C17.1125217,13.1559538 17.7391304,11.7674002 17.7391304,10.2356719 C17.7391304,8.72266112 17.1277565,7.34939411 16.1336348,6.33954255 C16.0603826,6.26518274 15.9631304,6.17550575 15.8416696,6.07051157 C15.6369391,5.89347559 15.6064696,5.59184965 15.7717565,5.3790021 L16.4071304,4.5609727 C16.5813913,4.33647388 16.9087304,4.2928097 17.1381913,4.46342268 C17.1464348,4.4695904 17.1545739,4.47599298 17.1624,4.48263043 C17.2382609,4.54636011 17.3022261,4.60217592 17.3544,4.65007785 C18.8757913,6.04724988 19.826087,8.03285696 19.826087,10.2356719 Z M12,11.7674002 C12.8644174,11.7674002 13.5652174,11.081599 13.5652174,10.2356719 C13.5652174,9.38972438 12.8644174,8.70395374 12,8.70395374 C11.1355826,8.70395374 10.4347826,9.38972438 10.4347826,10.2356719 C10.4347826,11.081599 11.1355826,11.7674002 12,11.7674002 Z"></path></svg></span></span>Channels</a><a data-css-epqhf0="" data-link-name="bookmarks" href="https://app.pluralsight.com/library/bookmarks"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="bookmark icon" viewBox="0 0 24 24"><title>bookmark</title><path fill="currentColor" fill-rule="evenodd" d="M16.5012,2 L8,2 C5.79401,2 4,3.79501 4,6 L4,21.7146 C4,21.9907 4.223877,22.2146 4.5,22.2146 C4.640137,22.2146 4.773865,22.1558 4.868591,22.0525 L9.5,17 L14.1314,22.0525 C14.318,22.256 14.6343,22.2698 14.8379,22.0832 C14.9412,21.9885 15,21.8547 15,21.7146 L15,10 L19,10 C19.552,10 20,9.55301 20,9 L20,6 C20,3.79501 18.7083,2 16.5012,2 Z M13,6 L13,18 L9.5,14 L6,18 L6,6 C6,4.896 6.89697,4 8,4 L13.53601,4 C13.19598,4.58899 13,5.272 13,6 Z M15,8 L18,8 L18,6 C18,4.896 17.6033,4 16.5012,4 C15.3983,4 15,4.896 15,6 L15,8 Z"></path></svg></span></span>Bookmarks</a><a data-css-epqhf0="" data-link-name="q&amp;a" href="https://app.pluralsight.com/questions-and-answers"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="questions and answers icon" viewBox="0 0 24 24"><title>questions and answers</title><path fill-rule="evenodd" fill="currentColor" d="M10.091101,11.05701 C10.134311,11.02136 10.189731,11 10.250041,11 L18.750061,11 C18.888061,11 19.000061,11.11194 19.000061,11.25 L19.000061,12.75 C19.000061,12.8881 18.888061,13 18.750061,13 L10.250041,13 C10.111981,13 10.000041,12.8881 10.000041,12.75 L10.000041,11.25 C10.000041,11.17224 10.035441,11.10278 10.091101,11.05701 Z M10.250041,14 L16.750061,14 C16.812661,14 16.869861,14.0231 16.913761,14.0612 C16.966561,14.1069 17.000061,14.1746 17.000061,14.25 L17.000061,15.75 C17.000061,15.8881 16.888061,16 16.750061,16 L10.250041,16 C10.184491,16 10.124791,15.9747 10.080121,15.9333 C10.030801,15.8877 10.000041,15.8225 10.000041,15.75 L10.000041,14.25 C10.000041,14.1119 10.111981,14 10.250041,14 Z M20.000061,7 L22.000061,7 C22.552361,7 23.000061,7.44772 23.000061,8 L23.000061,22.1169 C23.000061,22.5055 22.576061,22.7456 22.242861,22.5457 L18.000061,20 L7.00001104,20 C6.44772104,20 6.00000104,19.5523 6.00001104,19 L6.00004104,17 L2.00000004,17 C1.44771404,17 0.999998502,16.5523 1,16 L1.00003526,2.999997 C1.00003676,2.447714 1.44775304,2 2.00003604,2 L19.000061,2 C19.552361,2 20.000061,2.447715 20.000061,3 L20.000061,7 Z M17.999761,7 L17.999661,6.1178 C17.999561,5.41187 17.999461,4.70593 18.000061,4 L3.00004104,4 L3.00004104,15.0033 L6.00004104,15.0033 L6.00000104,8.00001 C6.00000104,7.44772 6.44772104,7 7.00000104,7 L17.999761,7 Z M8.00004104,9 L8.00004104,18 L18.500061,18 L21.000061,19.5 L21.000061,9 L8.00004104,9 Z"></path></svg></span></span>Q&amp;A</a><a data-css-epqhf0="" data-link-name="notifications" href="https://app.pluralsight.com/communications/notifications"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="bell icon" viewBox="0 0 24 24"><title>bell</title><path fill="currentColor" fill-rule="evenodd" d="M19.6,16.1 C19.9,16.3 20,16.6 20.1,16.9 C20.1,17.5 19.6,18 19,18 L5.09998,18 C4.5,18 4,17.5 4,16.9 C4,16.6 4.0999756,16.3 4.400024,16.2 C5.40002,15.2 5.59998,13.2 5.59998,12.1 L5.59998,9.90002 C5.59998,7.09998 7.5,4.69995 10,3.80005 C10.09998,2.800049 11,2 12,2 C13,2 13.90002,2.800049 14,3.80005 C16.5,4.69995 18.4,7.09998 18.4,9.90002 L18.4,12 C18.4,13.1 18.6,15.1 19.6,16.1 Z M7.58655,12.2646 C7.48999,13.4352 7.37292,14.8544 6.80005,16 L17.2001,16 C16.6001,14.7 16.4,13.3 16.4,12.1 L16.4,9.90002 C16.4,7.5 14.4,5.5 12,5.5 C9.6001,5.5 7.6001,7.5 7.6001,9.90002 L7.6001,12.1 L7.58655,12.2646 Z M15,19 C15,20.7 13.69995,22 12,22 C10.30005,22 9,20.7 9,19 L15,19 Z"></path></svg></span></span>Notifications</a></div><a data-css-epqhf0="" data-link-name="profile" href="https://app.pluralsight.com/profile"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="profile icon" viewBox="0 0 24 24"><title>profile</title><path fill-rule="evenodd" fill="currentColor" d="M8,8 C8,5.79401 9.79395,4 12,4 C14.2061,4 16,5.79401 16,8 C16,10.20599 14.2061,12 12,12 C9.79395,12 8,10.20599 8,8 Z M10,8 C10,9.103 10.89697,10 12,10 C13.10303,10 14,9.103 14,8 C14,6.896 13.10303,6 12,6 C10.89697,6 10,6.896 10,8 Z M4.5,20 C4.223877,20 4,19.7761 4,19.5 L4,19 C4,15.467 7.29004,13 12,13 C16.71,13 20,15.467 20,19 L20,19.5 C20,19.7761 19.7761,20 19.5,20 L4.5,20 Z M17.842,18 C17.244,16.192 15.009,15 12.0011,15 C8.99304,15 6.75708,16.192 6.15906,18 L17.842,18 Z"></path></svg></span></span>Profile</a><a data-css-epqhf0="" data-link-name="notes" href="https://app.pluralsight.com/notes"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="notes icon" viewBox="0 0 24 24"><title>notes</title><path fill="currentColor" fill-rule="evenodd" d="M21,21 L21,3 C21,2.447754 20.5522,2 20,2 L6,2 C5.44775,2 5,2.447754 5,3 L5,6 L3.5,6 C3.223877,6 3,6.22388 3,6.5 L3,7.5 C3,7.77612 3.223877,8 3.5,8 L5,8 L5,11 L3.5,11 C3.223877,11 3,11.22388 3,11.5 L3,12.5 C3,12.7761 3.223877,13 3.5,13 L5,13 L5,16 L3.5,16 C3.223877,16 3,16.2239 3,16.5 L3,17.5 C3,17.7761 3.223877,18 3.5,18 L5,18 L5,21 C5,21.5522 5.44775,22 6,22 L20,22 C20.5522,22 21,21.5522 21,21 Z M19.002,20 L7,20 L7,18 L7.5,18 C7.77612,18 8,17.7761 8,17.5 L8,16.5 C8,16.2239 7.77612,16 7.5,16 L7,16 L7,13 L7.5,13 C7.77612,13 8,12.7761 8,12.5 L8,11.5 C8,11.22388 7.77612,11 7.5,11 L7,11 L7,8 L7.5,8 C7.77612,8 8,7.77612 8,7.5 L8,6.5 C8,6.22388 7.77612,6 7.5,6 L7,6 L7,4 L19,4 L19.002,20 Z M10.5,7 L16.5,7 C16.7761,7 17,7.22388 17,7.5 L17,12.5 C17,12.7761 16.7761,13 16.5,13 L10.5,13 C10.22388,13 10,12.7761 10,12.5 L10,7.5 C10,7.22388 10.22388,7 10.5,7 Z M12,11 L12,9 L15,9 L15,11 L12,11 Z"></path></svg></span></span>Notes</a><a data-css-epqhf0="" data-link-name="history" href="https://app.pluralsight.com/library/history"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="history icon" viewBox="0 0 24 24"><title>history</title><path fill="currentColor" fill-rule="evenodd" d="M11.513,6.99933 L12.513,6.99933 C12.7891,6.99933 13.013,7.22319 13.013,7.49933 L13.013,11.57773 L15.9126,14.4774 C16.1078,14.6726 16.1078,14.9892 15.9126,15.1844 L15.2055,15.8916 C15.0103,16.0868 14.6937,16.0868 14.4984,15.8916 L11.013,12.4062 L11.013,7.49933 C11.013,7.22319 11.23688,6.99933 11.513,6.99933 Z M2,12 C2,6.48608 6.48608,2 12,2 C17.5139,2 22,6.48608 22,12 C22,17.5139 17.5139,22 12,22 C6.48608,22 2,17.5139 2,12 Z M4,12 C4,16.4111 7.58887,20 12,20 C16.4111,20 20,16.4111 20,12 C20,7.58887 16.4111,4 12,4 C7.58887,4 4,7.58887 4,12 Z"></path></svg></span></span>History</a><a data-css-epqhf0="" data-link-name="account-settings" href="https://app.pluralsight.com/account"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="settings icon" viewBox="0 0 24 24"><title>settings</title><path fill-rule="evenodd" fill="currentColor" d="M3.97633833,12 C3.97633833,11.62292 4.00246833,11.25208 4.05287833,10.88892 L2.25014633,9.84802 C2.01101033,9.70996 1.92897913,9.40417 2.06704063,9.16504 L4.56703833,4.83496 C4.70522833,4.59583 5.01100833,4.51379 5.25014833,4.65198 L7.05385833,5.69336 C7.63576833,5.2384 8.28224833,4.8623 8.97731833,4.58105 L8.97731833,2.5 C8.97731833,2.223877 9.20119833,2 9.47731833,2 L14.4773183,2 C14.7534183,2 14.9773183,2.223877 14.9773183,2.5 L14.9773183,4.58191 C15.6720183,4.86316 16.3181183,5.23926 16.8997183,5.69397 L18.7046183,4.65198 C18.9437183,4.51379 19.2495183,4.59583 19.3876183,4.83496 L21.8876183,9.16504 C22.0256183,9.40417 21.9437183,9.70996 21.7046183,9.84802 L19.8999183,10.89001 C19.9503183,11.25281 19.9763183,11.62329 19.9763183,12 C19.9763183,12.3767 19.9503183,12.7472 19.8999183,13.11 L21.7046183,14.152 C21.9437183,14.29 22.0256183,14.5958 21.8876183,14.835 L19.3876183,19.165 C19.2495183,19.4042 18.9437183,19.4862 18.7046183,19.348 L16.8997183,18.306 C16.3181183,18.7607 15.6720183,19.1368 14.9773183,19.4181 L14.9773183,21.5 C14.9773183,21.7761 14.7534183,22 14.4773183,22 L9.47731833,22 C9.20119833,22 8.97731833,21.7761 8.97731833,21.5 L8.97731833,19.4189 C8.28224833,19.1377 7.63576833,18.7616 7.05385833,18.3066 L5.25014833,19.348 C5.01100833,19.4862 4.70522833,19.4042 4.56703833,19.165 L2.06704063,14.835 C1.92897913,14.5958 2.01101033,14.29 2.25014633,14.152 L4.05287833,13.1111 C4.00246833,12.7479 3.97633833,12.3771 3.97633833,12 Z M12.9763183,4 L10.9763383,4 L10.9763383,6.08301 C9.52626833,6.32617 8.25258833,7.0896 7.35365833,8.17468 L5.54958833,7.13306 L4.54958833,8.86511 L6.35194833,9.90576 C6.10902833,10.55774 5.97633833,11.26343 5.97633833,12 C5.97633833,12.736 6.10878833,13.4409 6.35121833,14.0924 L4.54860833,15.1331 L5.54860833,16.8651 L7.35231833,15.8237 C8.25136833,16.9097 9.52553833,17.6737 10.9763383,17.917 L10.9763383,20 L12.9763183,20 L12.9763183,17.917 C14.4274183,17.6736 15.7018183,16.9093 16.6008183,15.823 L18.4060183,16.8651 L19.4060183,15.1331 L17.6017183,14.0914 C17.8439183,13.4402 17.9763183,12.7356 17.9763183,12 C17.9763183,11.26367 17.8436183,10.55847 17.6011183,9.90674 L19.4050183,8.86511 L18.4050183,7.13306 L16.5996183,8.17542 C15.7006183,7.08997 14.4266183,6.32629 12.9763183,6.08301 L12.9763183,4 Z M7.97633833,12 C7.97633833,14.2091 9.76723833,16 11.9763183,16 C14.1854183,16 15.9763183,14.2091 15.9763183,12 C15.9763183,9.79089 14.1854183,8 11.9763183,8 C9.76723833,8 7.97633833,9.79089 7.97633833,12 Z M11.9763183,14 C13.0809183,14 13.9763183,13.1046 13.9763183,12 C13.9763183,10.89543 13.0809183,10 11.9763183,10 C10.8717483,10 9.97631833,10.89543 9.97631833,12 C9.97631833,13.1046 10.8717483,14 11.9763183,14 Z"></path></svg></span></span>Account settings</a><div data-css-pw7zg9=""></div><a data-css-epqhf0="" data-link-name="sign-out" href="https://app.pluralsight.com/id/signout"><span data-css-64j3zb=""><span data-css-1q33krd=""><svg role="img" aria-label="logout icon" viewBox="0 0 24 24"><title>logout</title><path fill="currentColor" fill-rule="evenodd" d="M12,5 L12,10 L14,10 L14,4 C14,3.447716 13.5522,3 13,3 L3,3 C2.447754,3 2,3.447716 2,4 L2,20 C2,20.5523 2.447754,21 3,21 L13,21 C13.5522,21 14,20.5523 14,20 L14,14 L12,14 L12,19 L4,19 L4,5 L12,5 Z M17.0314,7.65755 L16.3459,8.35709 C16.1555,8.55148 16.1555,8.86252 16.3459,9.05692 L18.2496,11 L10.33777,11 C10.06165,11 9.83777,11.22386 9.83777,11.5 L9.83777,12.5 C9.83777,12.77614 10.06165,13 10.33777,13 L18.2496,13 L16.3459,14.9431 C16.1555,15.1375 16.1555,15.4485 16.3459,15.6429 L17.0386,16.3497 C17.2358,16.5429 17.5524,16.5397 17.7456,16.3425 L21.6572,12.34991 C21.8477,12.15552 21.8477,11.84448 21.6572,11.65009 L17.7384,7.6503 C17.5411,7.45705 17.2246,7.4603 17.0314,7.65755 Z"></path></svg></span></span>Sign out</a></div></div></div></div></div><span product="skills" data-css-gyrv08="" isminimized="true"></span><div data-update-hash="68934a3e9455fa72420237eb05902327"></div><div data-update-hash="b326b5062b2f0e69046810717534cb09"></div></div></div>
+      <main id="ps-main" tabindex="-1" class="css-xou7e7 ps-prism--product-skills"><div class="build-page-container"><div class="row no-gutters build-page"><div class="col-xs col-lg-7 col-xl-8"><div class="build-container build-page__column card"><div class="top-gradient build-page-header card-header"><div class="row align-items-center justify-content-between w-100"><div class="col-auto"><a class="build-page__breadcrumb" href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express"><div role="link" class="pl-0 py-1" data-css-nipl9k=""><button data-css-1obf0ze=""><div data-css-1mgd019=""><div data-css-otejxm=""><svg aria-label="caret left icon" viewBox="0 0 24 24" role="img"><path d="M8 12l5-5 1.41 1.41L10.83 12l3.58 3.59L13 17"></path></svg></div></div><span data-css-15b13by="">Project overview</span></button></div></a><h2 class="pt-0 ps-type-font-size-medium">Creating a Data Access Library</h2></div><div class="col-auto"><button data-css-1oaxr3i=""><span data-css-15b13by="">Send Feedback</span></button></div></div></div><div class="d-flex my-3 subproject-information"><div class="subproject-information-icon d-flex justify-content-center align-items-center"><img alt="Information" class="subproject-information-icon-inner" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/code-w_oval.ef000324.svg"></div><div class="subproject-information-text text-gray-100 w-100 d-flex align-items-center"><div class="markdown react-md-code-dark py-3"><p data-css-145tgfu="">To verify your work locally for just this module, run the following command in a terminal: <code data-css-qf6m0u="">npm run test:module4</code>. The output will let you know which tasks are passing and failing.</p><p data-css-145tgfu="">To verify your work on Pluralsight, commit and push your changes to GitHub and click the Check My Work button.</p></div></div></div><div id="build-page-task-listing" class="scrollable card-body"><ul data-css-1o7kfj5=""><li id="87effa2c-2511-4617-8e62-2ca2cf0eaa41" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">1</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Create a library file">Create a library file</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">Create a new file called <code data-css-qf6m0u="">data.js</code> in the root of the <code data-css-qf6m0u="">src/</code> directory.</p></div></div></div></li><li id="49809f39-1942-418c-a641-a651a3b51dfb" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">2</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Require Built-in Libraries">Require Built-in Libraries</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">data.js</code> require the built-in library <code data-css-qf6m0u="">fs</code> and store a reference to it in a <code data-css-qf6m0u="">const</code> called <code data-css-qf6m0u="">fs</code>. Next, require the built-in library <code data-css-qf6m0u="">path</code> and store a reference to it in a <code data-css-qf6m0u="">const</code> called <code data-css-qf6m0u="">path</code>.</p></div></div></div></li><li id="2b5e2e86-96f6-43ae-8c04-5fa768497d6f" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">3</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Transition Account Data to Data Library">Transition Account Data to Data Library</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">app.js</code> locate the lines that are responsible for reading and parsing JSON from the <code data-css-qf6m0u="">src/json/accounts.json</code> file. Copy and paste them to the new <code data-css-qf6m0u="">data.js</code> file below the require statements.</p></div></div></div></li><li id="8547e73d-775d-4234-ac6d-bcd302b1c414" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">4</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Transition User Data to Data Library">Transition User Data to Data Library</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">app.js</code> locate the lines that are responsible for reading and parsing JSON from the <code data-css-qf6m0u="">src/json/users.json</code> file. Copy and paste them to the new <code data-css-qf6m0u="">data.js</code> file below the <code data-css-qf6m0u="">accounts</code> const.</p></div></div></div></li><li id="481e0032-2915-414d-9dcb-efcaea964a50" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">5</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title=" Write JSON Function"> Write JSON Function</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">data.js</code> below the account and user data lines create a function called <code data-css-qf6m0u="">writeJSON</code>. <strong>Hint: It is best to use ES6 arrow style function (=&gt;).</strong></p></div></div></div></li><li id="7930ec5b-fd43-4b65-8457-b474fe23d747" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">6</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Write JSON Function Body">Write JSON Function Body</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">app.js</code> locate the lines in the <code data-css-qf6m0u="">transfer</code> post route function body that are responsible for writing JSON data to a file. <strong>Hint: there are two lines.</strong> Copy these lines to the body of the <code data-css-qf6m0u="">writeJSON</code> function in the <code data-css-qf6m0u="">data.js</code> file.</p></div></div></div></li><li id="ffeda914-5022-440e-84a6-64cbe4af6d69" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">7</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Export Data and Function">Export Data and Function</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">data.js</code> use <code data-css-qf6m0u="">module.exports</code> to export an object containing the constants <code data-css-qf6m0u="">accounts</code>, <code data-css-qf6m0u="">users</code>, and the <code data-css-qf6m0u="">writeJSON</code> function.</p></div></div></div></li><li id="060811d1-cb57-4f80-9fe9-4e6a5db91f03" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">8</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Require Data Library">Require Data Library</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">Back In <code data-css-qf6m0u="">app.js</code> require <code data-css-qf6m0u="">data.js</code> and at the same time use object destructing to create three constants for <code data-css-qf6m0u="">accounts</code>, <code data-css-qf6m0u="">users</code>, and <code data-css-qf6m0u="">writeJSON</code>.</p><p data-css-145tgfu="">Remove the lines in <code data-css-qf6m0u="">app.js</code> that create the <code data-css-qf6m0u="">accountData</code>, <code data-css-qf6m0u="">accounts</code>, <code data-css-qf6m0u="">userData</code>, and <code data-css-qf6m0u="">users</code> consts.</p><p data-css-145tgfu=""><code data-css-qf6m0u="">accounts</code>, <code data-css-qf6m0u="">users</code>, and the <code data-css-qf6m0u="">writeJSON</code> function are now brought in by the require statement. <strong>Note: use relative paths to require the data module <code data-css-qf6m0u="">'./data'</code></strong></p></div></div></div></li><li id="b9b1ff39-61c5-4586-be67-d79ace7e5027" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">9</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Function Call Transfer">Function Call Transfer</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">app.js</code> locate the lines in the <code data-css-qf6m0u="">transfer</code> post route function body that are responsible for writing JSON data to a file and replace them with a call to the <code data-css-qf6m0u="">writeJSON()</code> function.</p></div></div></div></li><li id="170b1e8e-4edd-4042-a946-68e2bfb8d5cb" class="media task-list-item"><div class="task-number flex-shrink-0 d-inline-block mr-3 task-title-height"><div data-css-dkqbo5="" class="task-number-badge d-inline-flex align-items-center justify-content-center rounded-circle ps-colors-gray02--background-color">10</div></div><div class="media-body task-body"><div class="row align-items-center justify-content-between mb-2"><div class="col-8"><h3 class="ps-type-font-size-medium task-title-height d-flex align-items-center" title="Function Call Payments">Function Call Payments</h3></div><div class="col-auto d-flex align-items-center"><div data-css-1iwwm4u="" class="cursor-pointer"><svg aria-label="play circle icon" viewBox="0 0 24 24" role="img"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-2-4V8l6 4-6 4z"></path></svg></div><button data-css-1oxsf56=""><div data-css-y80vay=""><div data-css-12f5sv2=""><svg aria-label="caret up icon" viewBox="0 0 24 24" role="img"><path d="M12 9l-5 5 1.41 1.41L12 11.83l3.59 3.58L17 14"></path></svg></div></div><span data-css-15b13by=""></span></button></div></div><div class="description"><div class="markdown task-description"><p data-css-145tgfu="">In <code data-css-qf6m0u="">app.js</code> locate the lines in the <code data-css-qf6m0u="">payment</code> post route function body that are responsible for writing JSON data to a file and replace them with a call to the <code data-css-qf6m0u="">writeJSON()</code> function.</p></div></div></div></li></ul></div><div class="bg-gray-780 p-0 position-relative build-footer bottom-gradient card-footer"><div class="omnibar attention"><div class="row justify-content-between align-items-center"><div class="col-auto"><div class="d-flex align-items-center"><div class="upload-icon"><div id="folder-upload-icon" class="white-circle"><div data-css-1tiz5r9=""><svg aria-label="upload icon" viewBox="0 0 24 24" role="img"><path d="M13 6.414V15.5a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5V6.414l-1.94 1.94a.5.5 0 01-.707 0l-.706-.707a.5.5 0 010-.708l4-4a.5.5 0 01.707 0l4 4a.5.5 0 010 .708l-.707.706a.5.5 0 01-.707 0z"></path><path d="M3 15.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5V19h14v-3.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1z"></path></svg></div></div><div id="pluralsight-logo" class="white-circle"><img class="align-items-center" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/pluralsight-logo-mark-white-fill.37423690.svg" alt="Logo"></div></div><div class="col-auto pl-0"><span class="drag-and-drop-text">Drag &amp; drop your project folder here to check your work</span></div></div></div><div><div class="omnibar-drop-zone"><input type="file" id="filepicker" name="fileList" webkitdirectory="true"><button data-css-oiv6f1="" class="mt-3 px-5 mr-4 float-right" type="button"><span data-css-15b13by="">Choose folder</span></button></div></div></div></div></div></div></div><div class="col-xs col-lg-5 col-xl-4" role="complementary"><div class="build-page__column bg-gray-780 card"><div class="build-page-header card-header"><img src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/projects-logo.82eb7f34.svg" alt="Projects logo" width="27px"><h2 class="ps-type-font-size-medium mt-2 ml-3">Build a Banking Portal with Node &amp; Express</h2></div><div class="p-0 scrollable card-body"><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title bottom-border cursor-pointer"><h2><a href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/setup/e570b917-b1f9-4f9b-a43c-83bc3ec052cd"><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="subproject-complete-circle rounded-circle d-flex justify-content-center align-items-center"><span class="subproject-title__position">1</span></div></div><span class="title-text">Setup</span></span><i class="ps-i-down-arrow collapse-chevron float-right font-size-lg"></i></span></a></h2><div class="font-size-xs toc-header__vertical-bar"></div></div></div><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title bottom-border cursor-pointer"><h2><a href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/use-express-to-create-a-server"><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="subproject-complete-circle rounded-circle d-flex justify-content-center align-items-center"><span class="subproject-title__position">2</span></div></div><span class="title-text">Use Express to Create a Server</span></span><i class="ps-i-down-arrow collapse-chevron float-right font-size-lg"></i></span></a></h2><div class="font-size-xs toc-header__vertical-bar"></div></div></div><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title bottom-border cursor-pointer"><h2><a href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/file-handling-and-routing"><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="subproject-complete-circle rounded-circle d-flex justify-content-center align-items-center"><span class="subproject-title__position">3</span></div></div><span class="title-text">File Handling and Routing</span></span><i class="ps-i-down-arrow collapse-chevron float-right font-size-lg"></i></span></a></h2><div class="font-size-xs toc-header__vertical-bar"></div></div></div><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title bottom-border cursor-pointer"><h2><a href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/handling-form-data"><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="subproject-complete-circle rounded-circle d-flex justify-content-center align-items-center"><span class="subproject-title__position">4</span></div></div><span class="title-text">Handling Form Data</span></span><i class="ps-i-down-arrow collapse-chevron float-right font-size-lg"></i></span></a></h2><div class="font-size-xs toc-header__vertical-bar"></div></div></div><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title toc-heading-active cursor-pointer"><h2><a href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/creating-a-data-access-library"><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="ps-colors-gray05--background-color rounded-circle d-flex justify-content-center align-items-center"><div data-css-1abx40i=""><svg data-css-r8je9y="" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"><circle r="22" cx="24" cy="24" data-css-1n6oxz3=""></circle><circle r="22" cx="24" cy="24" data-css-y5gw89="" stroke-dasharray="138.23007675795088 138.23007675795088" stroke-dashoffset="138.23007675795088"></circle></svg></div><span class="subproject-title__position">5</span></div></div><span class="title-text">Creating a Data Access Library</span></span><i class="ps-i-up-arrow font-weight-bold collapse-chevron float-right font-size-lg"></i></span></a></h2><div class="font-size-xs toc-header__vertical-bar"><span>10 tasks | <time datetime="PT20M"> 20m </time></span></div></div><div class="toc-section blent-toc-section"><div class="toc-section__vertical-bar"></div><ol class="toc-list m-0"><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><a class="toc-item-text" href="https://app.pluralsight.com/projects/build-a-banking-portal-with-node-express/creating-a-data-access-library">1. Create a library file</a></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">2. Require Built-in Libraries</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">3. Transition Account Data to Data Library</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">4. Transition User Data to Data Library</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">5.  Write JSON Function</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">6. Write JSON Function Body</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">7. Export Data and Function</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">8. Require Data Library</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">9. Function Call Transfer</span></li><li class="toc-item is-active"><div class="mr-3 d-flex"><div class="toc-badge toc-badge-size"></div></div><span class="toc-item-text">10. Function Call Payments</span></li></ol></div></div><div class="text-white border-top-0 rounded-0"><div class="toc-heading subproject-title bottom-border"><h2><span class="d-flex justify-content-between align-items-center"><span class="d-flex align-items-center"><div class="mr-2"><div class="ps-colors-gray05--background-color rounded-circle d-flex justify-content-center align-items-center"><div data-css-1abx40i=""><svg data-css-r8je9y="" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg"><circle r="22" cx="24" cy="24" data-css-1n6oxz3=""></circle><circle r="22" cx="24" cy="24" data-css-y5gw89="" stroke-dasharray="138.23007675795088 138.23007675795088" stroke-dashoffset="138.23007675795088"></circle></svg></div><span class="subproject-title__position">6</span></div></div><span class="title-text">Using the Express Router</span></span><i class="ps-i-down-arrow collapse-chevron float-right font-size-lg"></i></span></h2><div class="font-size-xs toc-header__vertical-bar"></div></div></div></div></div></div></div></div></main>
+    <div><div><div data-css-n2c6d3=""><p data-css-fg8csb=""><label>Pluralsight uses cookies.</label>  <a href="https://www.pluralsight.com/privacy">Learn more about your privacy</a></p><button data-css-h54kwj="" aria-label="Accept privacy policy"><span data-css-1q33krd=""><svg role="img" aria-label="close icon" viewBox="0 0 24 24"><title>close</title><path fill="currentColor" fill-rule="evenodd" d="M17.6464,7.05645 L16.9436,6.353554 C16.7483,6.158292 16.4317,6.158292 16.2364,6.353554 L12,10.59 L7.76355,6.353554 C7.56829,6.158292 7.25171,6.158292 7.05645,6.353554 L6.353554,7.05645 C6.158292,7.25171 6.158292,7.56829 6.353554,7.76355 L10.59,12 L6.353554,16.2364 C6.158292,16.4317 6.158292,16.7483 6.353554,16.9436 L7.05645,17.6464 C7.25171,17.8417 7.56829,17.8417 7.76355,17.6464 L12,13.41 L16.2364,17.6464 C16.4317,17.8417 16.7483,17.8417 16.9436,17.6464 L17.6464,16.9436 C17.8417,16.7483 17.8417,16.4317 17.6464,16.2364 L13.41,12 L17.6464,7.76355 C17.8417,7.56829 17.8417,7.25171 17.6464,7.05645 Z"></path></svg></span></button></div></div></div><div><div><footer aria-label="footer" role="contentinfo" data-css-10rbz86=""><nav data-css-1yzofs6=""><ul data-css-znnuzi=""><li data-css-1d7y3je=""><a href="https://help.pluralsight.com/help/using-pluralsight" data-css-1r65u81="">Features</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://www.pluralsight.com/authors" data-css-1r65u81="">Authors</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://www.pluralsight.com/downloads" data-css-1r65u81="">Mobile &amp; offline apps</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://www.pluralsight.com/blog" data-css-1r65u81="">Blog</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://help.pluralsight.com/" data-css-1r65u81="">Help center</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://learn.pluralsight.com/resource/tutorial/how-to" data-css-1r65u81="">How-to videos</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://www.pluralsight.com/terms" data-css-1r65u81="">Terms of use</a></li><li aria-hidden="true" data-css-1uldsqo="">·</li><li data-css-1d7y3je=""><a href="https://www.pluralsight.com/privacy" data-css-1r65u81="">Privacy policy</a></li></ul><div aria-hidden="true" data-css-1bo6eo4=""></div><ul data-css-12x9fr6=""><li data-css-1d7y3je=""><a href="https://help.pluralsight.com/" data-css-1r65u81="">Send feedback</a></li><li data-css-1d7y3je=""><a href="https://help.pluralsight.com/" data-css-1m2mo55=""><span>Get support</span></a></li></ul></nav></footer></div></div></div>
+    <div id="ps-notifications"><div x="0" y="0" class="css-ls6x00"></div></div>
+    <div id="modal-root"><div data-css-19y8f6h="" aria-label="video player modal" id="psds-dialog__overlay" role="region"><div data-css-t04v5a="" class="styles-module_video-modal_2uYQ_"><div><button data-css-1gmw1mr="" aria-label="Close dialog"><svg aria-label="close icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 7.41L16.59 6 12 10.59 7.41 6 6 7.41 10.59 12 6 16.59 7.41 18 12 13.41 16.59 18 18 16.59 13.41 12"></path></svg></button><div class="video-player-wrapper ps-colors-gray02--color"><div class="video-player"><div tabindex="-1" class="_3DTJT5We _27ZC7mVV"><div style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;"></div><div class="_1wHAIr0I" interaction-mode="MOUSE" is-ie="false" style="width: 487.5px; height: 274.219px;"><div class="_2-FNy9gS" style="width: 487.5px; height: 275px;"><div class="duKRI0aO"></div><div class="_3FO_Qstj"></div><video aria-label="video player, press h for keyboard shortcuts" id="video-element" class="_3K1CjCtj" src="https://vid21.pluralsight.com/clips/resolution/96d8fbbe-4a02-49fe-927b-47483f97ae65/current/mp4/1280x720.mp4?12sszg2cj657ruRBXfsYDzmSf_QLkFyxS-NlqK1o1t3NYZ1npWz1YBNsZF1DMlttxHYCcmd-LHcyu2HpcfbgWIFAcLiW57CuA9NJwAkd_xa2DXC_WMYxfd7ibsgx6KZsay5BYLKaJarA350_3iw5SJPpwE5fVSUemge7F_1vT83Gkmp0ws_-nsTMTSW4" preload="auto" playsinline=""></video><div style="position: absolute; bottom: 0px; right: 0px; left: 0px;"><div class="_2idtml83 bMu0Tgzi"><div class="_2ijiHqS6" style="left: 18.6154%;">0:22</div><div class="_3WF-r_Vr _3gikQi0S _1rS7Svnb"><div class="_2Wkig01V Fz4-1-L- _266wLaOC" style="width: 100%; top: 80%;"></div><div class="_2Wkig01V _7rWdP78G _266wLaOC" style="width: 100%; top: 80%;"></div><div class="_2Wkig01V _266wLaOC" style="top: 80%; width: 100%;"></div><span aria-label="Seek slider" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" aria-valuetext="1:56 of 1:56" tabindex="0" class="_29j_nsrf" style="top: 80%; left: 100%;"></span></div></div><div class="_1VRUksnA _2p49zukN" layout="360p"><div class="_2JCOcB-3"><div class="_16mQ2YP-"><div data-text="Play (k)" class="UzjDVtUD"><div class="_1jJ_A16T"><button is-control-bar-button="true" aria-label="" tabindex="0" type="button" class="_1Xy5XpDj undefined" active="true"><span class="_2p4Rq5Va"><svg viewBox="0 0 512 512" role="img" aria-label="play" focusable="false"><title>play</title><g class="_3u1sBxFq"><path d="M128.298428,420.088276 L400.580916,259.541816 C406.300456,256.169392 407.969634,249.163799 404.309128,243.894387 C403.350597,242.514553 402.078619,241.342679 400.580916,240.459585 L128.298428,79.9131256 C122.578887,76.5407017 114.974857,78.0785147 111.314351,83.3479272 C110.047999,85.1708808 109.375,87.2899105 109.375,89.454241 L109.375,410.54716 C109.375,416.803353 114.879881,421.875 121.670496,421.875 C124.019709,421.875 126.319753,421.254966 128.298428,420.088276 Z"></path></g></svg></span></button></div></div><div data-text="Next (&gt;)" class="UzjDVtUD"></div><div class="_3UBdpTcc"><div class="_1zjXzLQO"><div data-text="Mute (m)" class="UzjDVtUD"><div class="_1jJ_A16T"><button is-control-bar-button="true" aria-label="" tabindex="0" type="button" class="_1Xy5XpDj undefined" active="true"><span class="_2p4Rq5Va"><svg viewBox="0 0 512 512" role="img" aria-label="mute" focusable="false"><title>mute</title><g class="_3u1sBxFq"><path d="M312.5,123.153866 C371.619028,133.07216 416.666667,184.488142 416.666667,246.425565 C416.666667,308.362988 371.619028,359.778971 312.5,369.697264 L312.5,327.133534 C348.442234,317.882643 375,285.255553 375,246.425565 C375,207.595577 348.442234,174.968488 312.5,165.717596 L312.5,123.153866 Z M145.833333,166.666667 L253.050971,59.449029 C257.118932,55.3810676 263.714401,55.3810676 267.782362,59.449029 C269.735866,61.4025329 270.833333,64.0520528 270.833333,66.8147246 L270.833333,433.185275 C270.833333,438.938242 266.169633,443.601942 260.416667,443.601942 C257.653995,443.601942 255.004475,442.504475 253.050971,440.550971 L145.833333,333.333333 L83.3333333,333.333333 C71.827401,333.333333 62.5,324.005932 62.5,312.5 L62.5,187.5 C62.5,175.994068 71.827401,166.666667 83.3333333,166.666667 L145.833333,166.666667 Z M104.166667,204.758898 L104.166667,288.092232 L166.666667,288.092232 L229.166667,350.592232 L229.166667,142.258898 L166.666667,204.758898 L104.166667,204.758898 Z"></path></g></svg></span></button></div></div></div><div class="_1g_VShOO"><div class="KxhAATIb"><div class="_2NMfIjoD"><div class="_1Fhhz_KL _1rS7Svnb _3YKExJMJ _1CohwwgG"><div class="_2Wkig01V _3SaTngG2 _3HbuXxZQ _3YKExJMJ" style="top: 50%;"></div><div class="_2Wkig01V _3SaTngG2 _1WBp1HBT _266wLaOC _3YKExJMJ" style="width: 50%; top: 50%;"></div><span aria-label="Use arrow keys to adjust volume" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0" class="_29j_nsrf _3YKExJMJ" style="left: 50%; top: 50%;"></span></div></div></div></div></div><span class="_3_fQ8gjA" aria-label="1 minutes and 56 of 1 minutes and 56 seconds"><strong>1:56</strong><span style="font-weight: 200;"> / 1:56</span></span><div class="_2juYQGst"></div><div><div class="_l3p52UT"><div class="wX347wCE _1LRmxXdL" aria-hidden="true" style="height: 170px;"><div id="MAIN" class="_1vTk_09m"><button class="_38F3dYX5"><span class="_3GHbhBcw">Autoplay:</span><span class="_3qOHF72y"><span class="_3eijXM8d">On</span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="caret right icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 12l-5-5-1.41 1.41L13.17 12l-3.58 3.59L11 17"></path></svg></div></button><div id="AUTOPLAY" class="_2Foka524" aria-label="select autoplay default"><button class="_38F3dYX5" aria-label="back to main menu"><span style="margin-left: -7px;"><div data-css-otejxm=""><svg role="img" aria-label="caret left icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l5-5 1.41 1.41L10.83 12l3.58 3.59L13 17"></path></svg></div></span><span class="_3GHbhBcw">Autoplay</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">On</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="check icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.59 14.58l-3.17-3.17L5 12.82l4.59 4.59 10-10L18.18 6"></path></svg></div></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Off</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button></div><button class="_38F3dYX5"><span class="_3GHbhBcw">Quality:</span><span class="_3qOHF72y"><span class="_3eijXM8d">720p</span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="caret right icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 12l-5-5-1.41 1.41L13.17 12l-3.58 3.59L11 17"></path></svg></div></button><div id="QUALITY" class="_2Foka524"><button class="_38F3dYX5"><span style="margin-left: -7px;"><div data-css-otejxm=""><svg role="img" aria-label="caret left icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l5-5 1.41 1.41L10.83 12l3.58 3.59L13 17"></path></svg></div></span><span class="_3GHbhBcw">Quality</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><div class="_2jl-AmT7" aria-label="set quality" role="list" style="max-height: 128px;"><button class="_38F3dYX5" aria-label="quality is 720p"><span class="_3GHbhBcw">720p</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="check icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.59 14.58l-3.17-3.17L5 12.82l4.59 4.59 10-10L18.18 6"></path></svg></div></button><button class="_38F3dYX5" aria-label="set to 480p"><span class="_3GHbhBcw">480p</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5" aria-label="set to 360p"><span class="_3GHbhBcw">360p</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button></div></div><button class="_38F3dYX5"><span class="_3GHbhBcw">Captions:</span><span class="_3qOHF72y"><span class="_3eijXM8d">English</span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="caret right icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 12l-5-5-1.41 1.41L13.17 12l-3.58 3.59L11 17"></path></svg></div></button><div id="CAPTIONS" class="_2Foka524" aria-label="select caption language"><button class="_38F3dYX5" aria-label="back to captions menu"><span style="margin-left: -7px;"><div data-css-otejxm=""><svg role="img" aria-label="caret left icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l5-5 1.41 1.41L10.83 12l3.58 3.59L13 17"></path></svg></div></span><span class="_3GHbhBcw">Captions</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><span class="_1hZaNPU-"><div data-css-12f5sv2=""><svg role="img" aria-label="search icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.707 20.294L16.314 14.9C17.403 13.504 18 11.799 18 10c0-2.137-.833-4.144-2.344-5.656C14.145 2.832 12.137 2 10 2c-2.137 0-4.146.832-5.656 2.344C2.832 5.856 2 7.863 2 10c0 2.137.832 4.146 2.344 5.656C5.854 17.168 7.863 18 10 18c1.799 0 3.504-.596 4.9-1.685l5.393 5.393 1.414-1.414zM10 16c-1.603 0-3.109-.624-4.242-1.757C4.624 13.11 4 11.603 4 10c0-1.602.624-3.109 1.758-4.242C6.891 4.624 8.397 4 10 4c1.602 0 3.109.624 4.242 1.758C15.376 6.891 16 8.398 16 10c0 1.603-.624 3.11-1.758 4.243C13.109 15.376 11.602 16 10 16z"></path></svg></div><input class="_3jCE1FPw" data-testid="searchbox-input" aria-label="Search caption languages" placeholder="Search"></span><div class="_2jl-AmT7" aria-label="set caption language" role="list" style="height: 82px;"><button class="_38F3dYX5"><span class="_3GHbhBcw">Afrikaans</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Albanian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Amharic</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Arabic</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Armenian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Azeerbaijani</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Basque</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Belarusian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Bengali</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Bosnian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Bulgarian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Catalan</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Cebuano</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Chinese (Simplified)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Chinese (Traditional)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Corsican</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Croatian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Czech</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Danish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Dutch</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">English</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="check icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.59 14.58l-3.17-3.17L5 12.82l4.59 4.59 10-10L18.18 6"></path></svg></div></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Esperanto</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Estonian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Finnish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">French</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Frisian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Galician</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Georgian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">German</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Greek</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Gujarati</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Haitian Creole</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hausa</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hawaiian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hebrew</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hindi</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hmong</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hungarian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Icelandic</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Igbo</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Indonesian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Irish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Italian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Japanese</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Javanese</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Kannada</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Kazakh</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Khmer</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Korean</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Kurdish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Kyrgyz</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Lao</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Latin</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Latvian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Lithuanian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Luxembourgish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Macedonian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Malagasy</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Malay</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Malayalam</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Maltese</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Maori</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Marathi</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Mongolian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Myanmar (Burmese)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Nepali</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Norwegian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Nyanja (Chichewa)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Pashto</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Persian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Polish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Portuguese (Portugal, Brazil)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Punjabi</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Romanian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Russian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Samoan</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Scots Gaelic</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Serbian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Sesotho</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Shona</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Sindhi</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Sinhala (Sinhalese)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Slovak</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Slovenian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Somali</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Spanish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Sundanese</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Swahili</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Swedish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Tagalog (Filipino)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Tajik</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Tamil</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Telugu</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Thai</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Turkish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Ukrainian</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Urdu</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Uzbek</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Vietnamese</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Welsh</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Xhosa</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Yiddish</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Yoruba</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Zulu</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Chinese (Simplified)</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">Hebrew</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button></div></div><button class="_38F3dYX5"><span class="_3GHbhBcw">Speed:</span><span class="_3qOHF72y"><span class="_3eijXM8d">1x</span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="caret right icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 12l-5-5-1.41 1.41L13.17 12l-3.58 3.59L11 17"></path></svg></div></button><div id="SPEED" class="_2Foka524"><button class="_38F3dYX5" aria-label="back to captions menu"><span style="margin-left: -7px;"><div data-css-otejxm=""><svg role="img" aria-label="caret left icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12l5-5 1.41 1.41L10.83 12l3.58 3.59L13 17"></path></svg></div></span><span class="_3GHbhBcw">Speed</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><div class="_2jl-AmT7" aria-label="set playback speed" role="list" style="max-height: 128px;"><button class="_38F3dYX5"><span class="_3GHbhBcw">0.5x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">0.6x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">0.7x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">0.8x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">0.9x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span><div data-css-otejxm="" class="_24rEuawr"><svg role="img" aria-label="check icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.59 14.58l-3.17-3.17L5 12.82l4.59 4.59 10-10L18.18 6"></path></svg></div></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.1x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.2x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.3x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.4x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.5x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.6x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.7x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.8x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">1.9x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button><button class="_38F3dYX5"><span class="_3GHbhBcw">2x</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button></div></div><button class="_38F3dYX5"><span class="_3GHbhBcw">Send Feedback</span><span class="_3qOHF72y"><span class="_3eijXM8d"></span></span></button></div></div></div><div data-text="Settings" class="UzjDVtUD"><div class="_1jJ_A16T"><button is-control-bar-button="true" aria-label="" tabindex="0" type="button" class="_1Xy5XpDj"><span class="_2p4Rq5Va"><svg viewBox="0 0 512 512" role="img" aria-label="open settings" focusable="false"><title>open settings</title><g class="_3u1sBxFq"><path d="M83.3333333,250 C83.3333333,242.14535 83.8766846,234.417606 84.9278509,226.852306 L47.3699722,205.168254 C42.3877573,202.291771 40.6807245,195.921038 43.5572075,190.938823 L95.6405409,100.727844 C98.517024,95.7456287 104.887757,94.0385959 109.869972,96.9150789 L147.447416,118.610426 C159.571424,109.133935 173.040656,101.298979 187.520833,95.4398403 L187.520833,52.0833333 C187.520833,46.3303672 192.184534,41.6666667 197.9375,41.6666667 L302.104167,41.6666667 C307.857133,41.6666667 312.520833,46.3303672 312.520833,52.0833333 L312.520833,95.4567066 C326.992229,101.316865 340.453315,109.150653 352.570284,118.624263 L390.171694,96.9150789 C395.153909,94.0385959 401.524643,95.7456287 404.401126,100.727844 L456.484459,190.938823 C459.360942,195.921038 457.653909,202.291771 452.671694,205.168254 L415.075242,226.874576 C416.124381,234.432772 416.666667,242.153057 416.666667,250 C416.666667,257.846943 416.124381,265.567228 415.075242,273.125424 L452.671694,294.831746 C457.653909,297.708229 459.360942,304.078962 456.484459,309.061177 L404.401126,399.272156 C401.524643,404.254371 395.153909,405.961404 390.171694,403.084921 L352.570284,381.375737 C340.453315,390.849347 326.992229,398.683135 312.520833,404.543293 L312.520833,447.916667 C312.520833,453.669633 307.857133,458.333333 302.104167,458.333333 L197.9375,458.333333 C192.184534,458.333333 187.520833,453.669633 187.520833,447.916667 L187.520833,404.56016 C173.040656,398.701021 159.571424,390.866065 147.447416,381.389574 L109.869972,403.084921 C104.887757,405.961404 98.517024,404.254371 95.6405409,399.272156 L43.5572075,309.061177 C40.6807245,304.078962 42.3877573,297.708229 47.3699722,294.831746 L84.9278509,273.147694 C83.8766846,265.582394 83.3333333,257.85465 83.3333333,250 Z M270.833333,83.3333333 L229.166667,83.3333333 L229.166667,126.728301 C198.957599,131.796422 172.422683,147.699919 153.694857,170.305854 L116.110349,148.606429 L95.277016,184.69082 L132.825525,206.369462 C127.765573,219.952912 125,234.653489 125,250 C125,265.331599 127.760201,280.018518 132.810782,293.590937 L95.2561827,315.273095 L116.089516,351.357487 L153.667901,329.661597 C172.397216,352.284815 198.943102,368.201146 229.166667,373.271699 L229.166667,416.666667 L270.833333,416.666667 L270.833333,373.271699 C301.064146,368.19993 327.615516,352.27718 346.345573,329.645319 L383.952151,351.357487 L404.785484,315.273095 L367.196585,293.571135 C372.242483,280.004232 375,265.324142 375,250 C375,234.660945 372.237114,219.967197 367.181848,206.389262 L404.764651,184.69082 L383.931317,148.606429 L346.318623,170.322128 C327.590051,147.707552 301.049649,131.797638 270.833333,126.728301 L270.833333,83.3333333 Z M250,333.333333 C203.976271,333.333333 166.666667,296.023729 166.666667,250 C166.666667,203.976271 203.976271,166.666667 250,166.666667 C296.023729,166.666667 333.333333,203.976271 333.333333,250 C333.333333,296.023729 296.023729,333.333333 250,333.333333 Z M250,291.666667 C273.011865,291.666667 291.666667,273.011865 291.666667,250 C291.666667,226.988135 273.011865,208.333333 250,208.333333 C226.988135,208.333333 208.333333,226.988135 208.333333,250 C208.333333,273.011865 226.988135,291.666667 250,291.666667 Z"></path></g></svg></span></button></div></div></div><div data-text="Fullscreen (f)" class="UzjDVtUD _3jCZH0TA"><div class="_1jJ_A16T"><button is-control-bar-button="true" aria-label="" tabindex="0" type="button" class="_1Xy5XpDj"><span class="_2p4Rq5Va"><svg viewBox="0 0 512 512" role="img" aria-label="enter full screen" focusable="false"><title>enter full screen</title><g class="_3u1sBxFq"><path transform="rotate(90 250 250)" d="M104.166667,133.629449 L104.166667,197.916667 C104.166667,203.669633 99.5029661,208.333333 93.75,208.333333 L72.9166667,208.333333 C67.1637005,208.333333 62.5,203.669633 62.5,197.916667 L62.5,104.166667 L62.5,72.9166667 C62.5,67.1637005 67.1637005,62.5 72.9166667,62.5 L197.916667,62.5 C203.669633,62.5 208.333333,67.1637005 208.333333,72.9166667 L208.333333,93.75 C208.333333,99.5029661 203.669633,104.166667 197.916667,104.166667 L133.629449,104.166667 L230.43042,200.967638 C234.498382,205.035599 234.498382,211.631068 230.43042,215.699029 L215.699029,230.43042 C211.631068,234.498382 205.035599,234.498382 200.967638,230.43042 L104.166667,133.629449 Z M395.833333,366.370551 L395.833333,302.083333 C395.833333,296.330367 400.497034,291.666667 406.25,291.666667 L427.083333,291.666667 C432.836299,291.666667 437.5,296.330367 437.5,302.083333 L437.5,395.833333 L437.5,427.083333 C437.5,432.836299 432.836299,437.5 427.083333,437.5 L302.083333,437.5 C296.330367,437.5 291.666667,432.836299 291.666667,427.083333 L291.666667,406.25 C291.666667,400.497034 296.330367,395.833333 302.083333,395.833333 L366.370551,395.833333 L269.56958,299.032362 C265.501618,294.964401 265.501618,288.368932 269.56958,284.300971 L284.300971,269.56958 C288.368932,265.501618 294.964401,265.501618 299.032362,269.56958 L395.833333,366.370551 Z"></path></g></svg></span></button></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+
+    <script>window.__theme = 'bs4';</script>
+    <script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/prism-bootstrap-17.x.js.download"></script>
+    <script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/embeddable-player.v0.0.68.min.js.download"></script>
+
+
+      <script src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/notifications.js.download"></script>
+      <script type="text/javascript">_satellite.pageBottom();</script>
+  <script type="text/javascript" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/vendor.9569dab273a46b1e47b3.chunk.js.download"></script><script type="text/javascript" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/styles.96aa242678eb1164cb41.chunk.js.download"></script><script type="text/javascript" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/main.90c3971ed97b3e3aeefe.js.download"></script>
+
+<div id="koWidget"><div></div></div><webengagedata><style type="text/css">#webklipper-publisher-widget-container, #webklipper-publisher-widget-container * {overflow:visible; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;  box-sizing: content-box; margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}</style><div id="webklipper-publisher-widget-container"><iframe name="webengage-engagement-callback-frame" id="webengage-engagement-callback-frame" frameborder="0" marginheight="0" marginwidth="0" style="position: absolute; background-color: transparent; bottom: 0px; right: 0px; border: none; overflow: hidden; visibility: hidden; display: none;" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource(4).html"></iframe><iframe name="_we_wk_data_store" id="_we_wk_data_store" frameborder="0" marginheight="0" marginwidth="0" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/storage-frame-1.16.html" style="position: absolute; background-color: transparent; bottom: 0px; right: 0px; border: none; overflow: hidden; visibility: hidden; display: none;"></iframe></div></webengagedata><div></div><div></div><script class="ps-notifications-script" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/firebase-app.js.download"></script><script class="ps-notifications-script" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/firebase-auth.js.download"></script><script class="ps-notifications-script" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/firebase-firestore.js.download"></script><div class="appcues" role="alert" aria-label="Contextual help layer is present on screen"><appcues-checklists role="alert" aria-label="Contextual help checklist present on screen"><appcues-checklist class="apcl-right" style="right: 30px; bottom: 30px;"><iframe style="height: 60px; transition: all 1s ease-out 0s; border: none; width: 163px;" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/saved_resource(5).html"></iframe></appcues-checklist></appcues-checklists></div><iframe sandbox="allow-scripts allow-same-origin" title="Adobe ID Syncing iFrame" id="destination_publishing_iframe_pluralsight_0" name="destination_publishing_iframe_pluralsight_0_name" src="./Build a Banking Portal with Node &amp; Express _ Pluralsight Projects_files/dest5.html" style="display: none; width: 0px; height: 0px;" class="aamIframeLoaded"></iframe><div id="koWidget"><div><button class="ko-triggerButton--3ry6e"><svg class="ko-icon--1c2AY" viewBox="0 0 36 36" role="img" aria-label="Help"><title>Help</title><path d="M32.4 33.9c-.1 0-.1 0-.2-.1l-8.7-4.3c-1.7.5-3.5.8-5.4.8-8.8 0-16-6.3-16-14s7.2-14 16-14 16 6.3 16 14c0 3.7-1.6 7.2-4.5 9.8l3.3 7.1c.1.2 0 .4-.1.6-.2.1-.3.1-.4.1z" style="fill: rgb(35, 31, 32);"></path><path d="M32.8 34.4c-.1 0-.2 0-.2-.1l-9-4.5c-1.8.6-3.7.8-5.6.8-9.1 0-16.5-6.5-16.5-14.5S8.9 1.6 18 1.6s16.5 6.5 16.5 14.5c0 3.8-1.7 7.4-4.7 10.1l3.4 7.4c.1.2 0 .4-.1.6 0 .2-.1.2-.3.2zm-9.2-5.6c.1 0 .2 0 .2.1l7.9 3.9-3-6.4c-.1-.2 0-.4.1-.6 3-2.6 4.6-6 4.6-9.6 0-7.4-7-13.5-15.5-13.5-8.6 0-15.5 6-15.5 13.5s7 13.5 15.5 13.5c1.9 0 3.7-.3 5.5-.9.1.1.2 0 .2 0z" style="fill: rgb(255, 255, 255);"></path><path d="M16.2 15.6l.1-.1c3.1-.1 4.5-1.1 4.5-2.7 0-1.4-1.1-2.3-2.8-2.3-1.5 0-2.8.7-4 1.9l-1.8-2c1.4-1.6 3.3-2.7 5.9-2.7 3.4 0 5.8 1.9 5.8 5s-2.2 4.5-4.9 4.9l-.2 2h-2l-.6-4zm-.2 6h3.3V25H16v-3.4z" style="fill: rgb(255, 255, 255);"></path></svg></button></div></div></body></html>
